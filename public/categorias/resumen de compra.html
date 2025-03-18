@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korutjewelry - Finalizar Compra</title>
+    <style>
+        :root {
+            --primary: #FFD700;
+            --dark: #fbfbfb;
+            --darker: #fefcfc;
+            --light: #070707;
+            --gray: rgb(255, 255, 255);
+            --yellow: #ffd233;
+            --header-height-mobile: 60px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', serif;
+        }
+
+        body {
+            background-color: var(--darker);
+            color: var(--light);
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--dark);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgb(255, 255, 255);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 55px;
+        }
+
+        .logo-image {
+            width: 75px;
+            height: 65px;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Contenedor principal */
+        .checkout-container {
+            max-width: 1200px;
+            margin: 120px auto 40px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        /* Estilos para el producto */
+        .producto-container {
+            flex: 1;
+            min-width: 300px;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .checkout-titulo {
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: normal;
+        }
+
+        /* Carrusel de imágenes */
+        .producto-carrusel {
+            position: relative;
+            margin-bottom: 30px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .carrusel-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carrusel-slide {
+            flex: 0 0 100%;
+            height: 300px;
+        }
+
+        .carrusel-imagen {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carrusel-botones {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .carrusel-btn {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carrusel-indicadores {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .indicador {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+
+        .indicador.active {
+            background: white;
+        }
+
+        /* Información del producto */
+        .producto-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .producto-nombre {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+
+        .producto-descripcion {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .producto-precio {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .producto-cantidad {
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .cantidad-label {
+            font-size: 16px;
+        }
+
+        .cantidad-valor {
+            font-weight: bold;
+            padding: 5px 10px;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+
+        /* Estilos para las opciones de pago */
+        .opciones-pago {
+            flex: 1;
+            min-width: 300px;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .resumen-compra {
+            margin-bottom: 30px;
+        }
+
+        .resumen-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .resumen-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 20px;
+            border-top: 1px solid #eee;
+            margin-top: 15px;
+            padding-top: 15px;
+        }
+
+        .botones-pago {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn-pago {
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-directo {
+            background: var(--yellow);
+            color: #000000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-directo::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(30deg);
+            transition: transform 0.5s ease;
+            opacity: 0;
+        }
+
+        .btn-directo:hover::after {
+            transform: rotate(30deg) translate(50%, 50%);
+            opacity: 1;
+        }
+
+        .btn-directo:hover {
+            background: #FFC800;
+        }
+
+        .btn-finalizar {
+            background: #333333;
+            color: #ffffff;
+        }
+
+        .btn-finalizar:hover {
+            background: #555555;
+        }
+
+        .btn-contraentrega {
+            background: #ffffff;
+            color: #333333;
+            border: 2px solid #333333;
+        }
+
+        .btn-contraentrega:hover {
+            background: #f5f5f5;
+        }
+
+        .separador {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #666;
+            margin: 20px 0;
+        }
+
+        .separador::before,
+        .separador::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #eee;
+        }
+
+        .separador::before {
+            margin-right: 10px;
+        }
+
+        .separador::after {
+            margin-left: 10px;
+        }
+
+        .metodos-pago {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .metodo-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .qr-code {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 15px;
+            object-fit: contain;
+        }
+
+        .nota-seguridad {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 3px #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            z-index: 1000;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Estilos para Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0}
+            to {opacity: 1}
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 600px;
+            animation: slideIn 0.4s;
+            position: relative;
+        }
+
+        @keyframes slideIn {
+            from {top: -300px; opacity: 0}
+            to {top: 0; opacity: 1}
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .modal-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: normal;
+        }
+
+        /* Estilos para el formulario */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, 
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--yellow);
+        }
+
+        .btn-form {
+            background: var(--yellow);
+            color: #000;
+            padding: 15px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        .carrusel-container {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: 100%;
+}
+
+.carrusel-slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+}
+        .btn-form:hover {
+            background: #FFC800;
+        }
+
+        /* QR Modal */
+        .qr-container {
+            text-align: center;
+        }
+
+        .qr-container p {
+            margin: 15px 0;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .checkout-container {
+                flex-direction: column;
+                margin-top: 100px;
+            }
+
+            .navbar {
+                padding: 10px 20px;
+            }
+
+            .logo-image {
+                width: 50px;
+                height: 40px;
+            }
+
+            .carrusel-slide {
+                height: 250px;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 20px;
+            }
+            
+            .qr-code {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="./assents/logo.png" alt="Korutjewelry Logo" class="logo-image" onerror="this.src='https://via.placeholder.com/75x65?text=Korut'">
+        </div>
+    </nav>
+    
+    <div class="checkout-container">
+        <div class="producto-container">
+            <h2 class="checkout-titulo">Tu Compra</h2>
+            
+            <!-- Carrusel de imágenes de productos -->
+            <div class="producto-carrusel">
+                <div class="carrusel-container" id="carrusel-container">
+                    <!-- Las imágenes se cargarán dinámicamente -->
+                </div>
+                
+                <div class="carrusel-botones">
+                    <button class="carrusel-btn carrusel-prev">&#10094;</button>
+                    <button class="carrusel-btn carrusel-next">&#10095;</button>
+                </div>
+                
+                <div class="carrusel-indicadores" id="carrusel-indicadores">
+                    <!-- Los indicadores se cargarán dinámicamente -->
+                </div>
+            </div>
+            
+            <!-- Información del producto -->
+            <div class="producto-info">
+                <h3 class="producto-nombre" id="producto-nombre">Cargando producto...</h3>
+
+                <div class="producto-cantidad">
+                    <span class="cantidad-label">Cantidad:</span>
+                    <span class="cantidad-valor" id="cantidad-valor">1</span>
+                </div>
+                
+                <div class="producto-precio" id="producto-precio">$0.00 COP</div>
+            </div>
+        
+                
+                <div class="producto-descripcion" id="producto-descripcion">
+                    <p>Joya elaborada con los mejores materiales, diseño exclusivo de Korutjewelry. Hecho a mano con bronce bañado en oro de 24k  Cada pieza es única, elaborada por artesanos</p>
+                    <p>Nuestras joyas son hipoalergénicas y libres de níquel, perfectas para el uso diario o para ocasiones especiales.</p>
+                </div>
+                
+            </div>  
+        
+        <div class="opciones-pago">
+            <h2 class="checkout-titulo">Opciones de Pago</h2>
+            <p class="nota-seguridad">
+                🔒 Pagos 100% seguros - Información encriptada
+            </p>
+            <br>
+            <br>
+            <div class="resumen-compra">
+                <div class="resumen-item">
+                    <span>Subtotal:</span>
+                    <span id="resumen-subtotal">$0.00 COP</span>
+                </div>
+                <div class="resumen-item">
+                    <span>Envío:</span>
+                    <span id="resumen-envio">Calculado en el siguiente paso</span>
+                </div>
+                <div class="resumen-total">
+                    <span>Total:</span>
+                    <span id="resumen-total">$0.00 COP</span>
+                </div>
+            </div>
+            
+            <div class="botones-pago">
+                <button class="btn-pago btn-directo" id="compra-directa">
+                    ⚡ COMPRA DIRECTA
+                </button>
+                
+                <div class="separador">o</div>
+                
+                <button class="btn-pago btn-finalizar" id="finalizar-compra">
+                    FINALIZAR COMPRA
+                </button>
+                
+                <button class="btn-pago btn-contraentrega" id="pago-contraentrega">
+                    PAGO CONTRA ENTREGA
+                </button>
+            </div>
+            
+            <div class="metodos-pago">
+                <img src="./assents/visa-icon.png" alt="Visa" class="metodo-icon" onerror="this.src='https://via.placeholder.com/40'">
+                <img src="./assents/mastercard-icon.png" alt="Mastercard" class="metodo-icon" onerror="this.src='https://via.placeholder.com/40'">
+                <img src="./assents/pse-icon.png" alt="PSE" class="metodo-icon" onerror="this.src='https://via.placeholder.com/40'">
+                <img src="./assents/efecty-icon.png" alt="Efecty" class="metodo-icon" onerror="this.src='https://via.placeholder.com/40'">
+            </div>
+            
+           
+        </div>
+    </div>
+    
+    <!-- Modal para el QR -->
+    <div id="qr-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-qr">&times;</span>
+            <h3 class="modal-title">Pago con código QR</h3>
+            <div class="qr-container">
+                <p>Escanea este código QR para realizar el pago:</p>
+                <img src="./assents/QR-Juan.jpeg" alt="QR Code" class="qr-code" onerror="this.src='https://via.placeholder.com/300'">
+                <p>Una vez realizado el pago, envíanos el comprobante por WhatsApp</p>
+                <button class="btn-form" id="enviar-comprobante">ENVIAR COMPROBANTE</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal para el formulario de contra entrega -->
+    <div id="formulario-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-formulario">&times;</span>
+            <h3 class="modal-title">Datos para envío</h3>
+            
+            <div class="form-group">
+                <label for="nombre">Nombre completo *</label>
+                <input type="text" id="nombre" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="telefono">Teléfono *</label>
+                <input type="tel" id="telefono" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="ciudad">Ciudad *</label>
+                <select id="ciudad" required>
+                    <option value="">Selecciona una ciudad</option>
+                    <option value="Bogotá">Bogotá</option>
+                    <option value="Medellín">Medellín</option>
+                    <option value="Cali">Cali</option>
+                    <option value="Barranquilla">Barranquilla</option>
+                    <option value="Cartagena">Cartagena</option>
+                    <option value="Otra">Otra ciudad</option>
+                </select>
+            </div>
+            
+            <div class="form-group" id="otra-ciudad-container" style="display: none;">
+                <label for="otra-ciudad">Especifica la ciudad *</label>
+                <input type="text" id="otra-ciudad">
+            </div>
+            
+            <div class="form-group">
+                <label for="direccion">Dirección completa *</label>
+                <input type="text" id="direccion" required placeholder="Calle 123 # 45-67, Apto 101">
+            </div>
+            
+            <div class="form-group">
+                <label for="referencias">Referencias adicionales</label>
+                <textarea id="referencias" rows="2" placeholder="Punto de referencia, indicaciones, etc."></textarea>
+            </div>
+            
+            <button class="btn-form" id="enviar-contraentrega">FINALIZAR PEDIDO</button>
+        </div>
+    </div>
+    
+    <a href="https://wa.me/573236239297" class="whatsapp-btn" target="_blank">
+        &#128222;
+    </a>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Referencias a los modales
+            const qrModal = document.getElementById('qr-modal');
+            const formularioModal = document.getElementById('formulario-modal');
+            
+            // Referencias a los botones de cierre
+            const closeQR = document.getElementById('close-qr');
+            const closeFormulario = document.getElementById('close-formulario');
+            
+            // Recuperar los datos del carrito desde localStorage
+            const cartData = JSON.parse(localStorage.getItem('cartSummary'));
+            
+            if (!cartData || !cartData.items || cartData.items.length === 0) {
+                // Si no hay datos o el carrito está vacío, redirigir a la página principal
+                alert('No hay productos en el carrito');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            // Mostrar los productos en el carrusel
+            const carruselContainer = document.getElementById('carrusel-container');
+            const indicadoresContainer = document.getElementById('carrusel-indicadores');
+            
+            carruselContainer.innerHTML = '';
+            indicadoresContainer.innerHTML = '';
+            
+            // Si solo hay un producto, mostrar solo una imagen sin carrusel
+            if (cartData.items.length === 1) {
+                const item = cartData.items[0];
+                
+                const slide = document.createElement('div');
+                slide.className = 'carrusel-slide';
+                slide.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="carrusel-imagen" onerror="this.src='./assents/producto-default.jpg'">
+                `;
+                carruselContainer.appendChild(slide);
+                
+                // Ocultar los botones y los indicadores
+                document.querySelector('.carrusel-botones').style.display = 'none';
+                indicadoresContainer.style.display = 'none';
+                
+                // Actualizar la información del producto
+                document.getElementById('producto-nombre').textContent = item.name;
+                document.getElementById('cantidad-valor').textContent = item.quantity;
+                document.getElementById('producto-precio').textContent = formatCurrency(item.price * item.quantity);
+                
+            } else {
+                // Si hay múltiples productos, configurar el carrusel
+                cartData.items.forEach((item, index) => {
+                    // Crear slide
+                    const slide = document.createElement('div');
+                    slide.className = 'carrusel-slide';
+                    slide.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="carrusel-imagen" onerror="this.src='./assents/producto-default.jpg'">
+                    `;
+                    carruselContainer.appendChild(slide);
+                    
+                    // Crear indicador
+                    const indicador = document.createElement('div');
+                    indicador.className = index === 0 ? 'indicador active' : 'indicador';
+                    indicador.onclick = () => goToSlide(index);
+                    indicadoresContainer.appendChild(indicador);
+                });
+                
+                // Actualizar la información del producto combinada
+                document.getElementById('producto-nombre').textContent = 
+                    cartData.items.length > 1 
+                        ? `${cartData.items.length} productos seleccionados` 
+                        : cartData.items[0].name;
+                
+                const totalQuantity = cartData.items.reduce((total, item) => total + item.quantity, 0);
+                document.getElementById('cantidad-valor').textContent = totalQuantity;
+            }
+            
+            // Actualizar los totales
+            document.getElementById('resumen-subtotal').textContent = formatCurrency(cartData.subtotal);
+            document.getElementById('resumen-total').textContent = formatCurrency(cartData.total);
+            
+            // Si hay costo de envío, mostrarlo
+            if (cartData.shipping && cartData.shipping > 0) {
+                document.getElementById('resumen-envio').textContent = formatCurrency(cartData.shipping);
+            }
+            
+            // Configurar el carrusel
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.carrusel-slide');
+            const indicadores = document.querySelectorAll('.indicador');
+            const totalSlides = slides.length;
+            
+            if (totalSlides > 1) {
+                // Configurar botones del carrusel
+                document.querySelector('.carrusel-prev').addEventListener('click', () => {
+                    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                    updateCarrusel();
+                });
+                
+                document.querySelector('.carrusel-next').addEventListener('click', () => {
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    updateCarrusel();
+                });
+                
+                // Función para ir a un slide específico
+                window.goToSlide = function(index) {
+                    currentSlide = index;
+                    updateCarrusel();
+                };
+                
+                // Función para actualizar el carrusel
+                function updateCarrusel() {
+                // Asegúrate de que esto aplique la transformación correctamente
+                carruselContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // Actualizar indicadores
+                indicadores.forEach((indicador, index) => {
+                    indicador.classList.toggle('active', index === currentSlide);
+                });
+                
+                // Actualizar la información del producto actual
+                const item = cartData.items[currentSlide];
+                document.getElementById('producto-nombre').textContent = item.name;
+                document.getElementById('cantidad-valor').textContent = item.quantity;
+                document.getElementById('producto-precio').textContent = formatCurrency(item.price * item.quantity);
+}
+                // Inicializar el carrusel
+                updateCarrusel();
+                
+                // Auto-rotación (opcional)
+                setInterval(() => {
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    updateCarrusel();
+                }, 5000);
+            }
+            
+            // 1. Abrir modal QR con el botón "FINALIZAR COMPRA"
+            document.getElementById('finalizar-compra').addEventListener('click', function() {
+                // Mostrar el modal de QR
+                qrModal.style.display = 'block';
+                
+                // Prevenir scroll del body
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // 2. Abrir modal de formulario con el botón "PAGO CONTRA ENTREGA"
+            document.getElementById('pago-contraentrega').addEventListener('click', function() {
+                // Mostrar el modal del formulario
+                formularioModal.style.display = 'block';
+                
+                // Prevenir scroll del body
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Cerrar modal de QR
+            closeQR.addEventListener('click', function() {
+                qrModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Cerrar modal de formulario
+            closeFormulario.addEventListener('click', function() {
+                formularioModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Cerrar modales al hacer clic fuera de ellos
+            window.addEventListener('click', function(event) {
+                if (event.target === qrModal) {
+                    qrModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+                if (event.target === formularioModal) {
+                    formularioModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Botón de enviar comprobante (QR)
+            document.getElementById('enviar-comprobante').addEventListener('click', function() {
+                // Construir mensaje para WhatsApp
+                const productoNombre = document.getElementById('producto-nombre').textContent;
+                const productoPrecio = document.getElementById('producto-precio').textContent;
+                
+                const mensaje = `¡Hola! He realizado un pago por QR para mi compra:\n\n` +
+                                `Producto: ${productoNombre}\n` +
+                                `Precio: ${productoPrecio}\n\n` +
+                                `(Adjuntaré el comprobante de pago)`;
+                
+                // Abrir WhatsApp con el mensaje
+                window.open(`https://wa.me/573236239297?text=${encodeURIComponent(mensaje)}`, '_blank');
+                
+                // Cerrar el modal
+                qrModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Manejo de "Otra ciudad"
+            document.getElementById('ciudad').addEventListener('change', function() {
+                const otraCiudadContainer = document.getElementById('otra-ciudad-container');
+                if (this.value === 'Otra') {
+                    otraCiudadContainer.style.display = 'block';
+                } else {
+                    otraCiudadContainer.style.display = 'none';
+                }
+            });
+            
+            // 3. Enviar información del formulario al WhatsApp
+            document.getElementById('enviar-contraentrega').addEventListener('click', function() {
+                // Obtener los valores del formulario
+                const nombre = document.getElementById('nombre').value.trim();
+                const telefono = document.getElementById('telefono').value.trim();
+                
+                const ciudadSelect = document.getElementById('ciudad');
+                let ciudad = ciudadSelect.options[ciudadSelect.selectedIndex].value;
+                if (ciudad === 'Otra') {
+                    ciudad = document.getElementById('otra-ciudad').value.trim();
+                }
+                
+                const direccion = document.getElementById('direccion').value.trim();
+                const referencias = document.getElementById('referencias').value.trim();
+                
+                // Validar campos obligatorios
+                if (!nombre) {
+                    alert('Por favor ingresa tu nombre completo');
+                    return;
+                }
+                if (!telefono) {
+                    alert('Por favor ingresa tu número de teléfono');
+                    return;
+                }
+                if (!ciudad) {
+                    alert('Por favor selecciona o ingresa tu ciudad');
+                    return;
+                }
+                if (!direccion) {
+                    alert('Por favor ingresa tu dirección completa');
+                    return;
+                }
+                
+                // Preparar el mensaje para WhatsApp
+                const productoNombre = document.getElementById('producto-nombre').textContent;
+                const cantidad = document.getElementById('cantidad-valor').textContent;
+                const precio = document.getElementById('producto-precio').textContent;
+                const total = document.getElementById('resumen-total').textContent;
+                
+                let mensaje = `🛒 *NUEVO PEDIDO CONTRA ENTREGA* 🛒\n\n`;
+                mensaje += `*Datos del cliente:*\n`;
+                mensaje += `👤 Nombre: ${nombre}\n`;
+                mensaje += `📱 Teléfono: ${telefono}\n\n`;
+                mensaje += `*Dirección de envío:*\n`;
+                mensaje += `🏙️ Ciudad: ${ciudad}\n`;
+                mensaje += `📍 Dirección: ${direccion}\n`;
+                
+                if (referencias) {
+                    mensaje += `📝 Referencias: ${referencias}\n`;
+                }
+                
+                mensaje += `\n*Producto(s):*\n`;
+                mensaje += `📦 ${productoNombre} (x${cantidad})\n`;
+                mensaje += `💰 Precio: ${precio}\n\n`;
+                mensaje += `*TOTAL A PAGAR:* ${total}`;
+                
+                // Abrir WhatsApp con el mensaje
+                window.open(`https://wa.me/573236239297?text=${encodeURIComponent(mensaje)}`, '_blank');
+                
+                // Cerrar el modal y mostrar mensaje de confirmación
+                formularioModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                alert('¡Gracias por tu pedido! Nos pondremos en contacto contigo pronto para coordinar la entrega.');
+            });
+            
+            // Configurar el botón de compra directa (mantener funcionalidad original)
+            document.getElementById('compra-directa').addEventListener('click', function() {
+                // Generar un identificador único para esta compra
+                const orderId = generateOrderId();
+                
+                // Redireccionar a la pasarela de pagos
+                window.location.href = `https://checkout.bold.co/payment/LNK_KLJR${orderId}`;
+            });
+        });
+        
+        // Función para formatear moneda en formato colombiano
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('es-CO', {
+                style: 'currency',
+                currency: 'COP',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+        
+        // Función para generar un ID de orden único
+        function generateOrderId() {
+            const timestamp = Date.now().toString().slice(-6);
+            const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+            return timestamp + random;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Probador Virtual de Joyas</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+            background: #1a1a1a;
+            font-family: Arial, sans-serif;
+        }
+
+        #videoContainer {
+            position: relative;
+            flex: 3;
+        }
+
+        #videoElement {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+        }
+
+        #overlayCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+
+        #controls {
+            flex: 1;
+            padding: 20px;
+            background: #333;
+            color: white;
+        }
+
+        .jewel-option {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .jewel-option:hover {
+            border-color: gold;
+        }
+
+        .placement-option {
+            padding: 10px;
+            margin: 5px;
+            background: #444;
+            cursor: pointer;
+        }
+
+        .selected {
+            background: gold;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="videoContainer">
+        <video id="videoElement" autoplay playsinline></video>
+        <canvas id="overlayCanvas"></canvas>
+    </div>
+    
+    <div id="controls">
+        <h2>Seleccionar Joya</h2>
+        <img src="https://cdn-icons-png.flaticon.com/512/1067/1067566.png" class="jewel-option" data-type="earring">
+        <img src="https://cdn-icons-png.flaticon.com/512/1067/1067558.png" class="jewel-option" data-type="necklace">
+        <img src="https://cdn-icons-png.flaticon.com/512/1067/1067562.png" class="jewel-option" data-type="ring">
+        
+        <h2>Ubicación</h2>
+        <div class="placement-option" data-placement="ears">Orejas</div>
+        <div class="placement-option" data-placement="neck">Cuello</div>
+        <div class="placement-option" data-placement="hands">Manos</div>
+    </div>
+
+    <script>
+        const video = document.getElementById('videoElement');
+        const canvas = document.getElementById('overlayCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let currentJewel = null;
+        let currentPlacement = 'ears';
+        let facePosition = { x: 0, y: 0, width: 0, height: 0 };
+
+        // Configurar la cámara
+        async function setupCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+                
+                video.onloadedmetadata = () => {
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    animate();
+                };
+            } catch (err) {
+                alert('Error al acceder a la cámara: ' + err);
+            }
+        }
+
+        // Simulación de detección facial
+        function detectFace() {
+            // En un sistema real aquí iría la lógica de reconocimiento facial
+            // Simulamos una cara centrada
+            return {
+                x: canvas.width / 2 - 100,
+                y: canvas.height / 2 - 150,
+                width: 200,
+                height: 300
+            };
+        }
+
+        // Dibujar joya en la posición correcta
+        function drawJewel() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            if (!currentJewel) return;
+            
+            const jewelImg = new Image();
+            jewelImg.src = currentJewel;
+            
+            jewelImg.onload = () => {
+                const positions = {
+                    ears: [
+                        { x: facePosition.x - 50, y: facePosition.y + 50 },
+                        { x: facePosition.x + facePosition.width + 30, y: facePosition.y + 50 }
+                    ],
+                    neck: {
+                        x: facePosition.x + facePosition.width/2 - 50,
+                        y: facePosition.y + facePosition.height - 50
+                    },
+                    hands: [
+                        { x: 100, y: canvas.height - 100 },
+                        { x: canvas.width - 200, y: canvas.height - 100 }
+                    ]
+                };
+
+                switch(currentPlacement) {
+                    case 'ears':
+                        positions.ears.forEach(pos => {
+                            ctx.drawImage(jewelImg, pos.x, pos.y, 80, 80);
+                        });
+                        break;
+                    case 'neck':
+                        ctx.drawImage(jewelImg, positions.neck.x, positions.neck.y, 100, 50);
+                        break;
+                    case 'hands':
+                        positions.hands.forEach(pos => {
+                            ctx.drawImage(jewelImg, pos.x, pos.y, 100, 100);
+                        });
+                        break;
+                }
+            };
+        }
+
+        // Bucle de animación
+        function animate() {
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            facePosition = detectFace();
+            drawJewel();
+            requestAnimationFrame(animate);
+        }
+
+        // Event Listeners
+        document.querySelectorAll('.jewel-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                currentJewel = e.target.src;
+            });
+        });
+
+        document.querySelectorAll('.placement-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                document.querySelectorAll('.placement-option').forEach(el => el.classList.remove('selected'));
+                e.target.classList.add('selected');
+                currentPlacement = e.target.dataset.placement;
+            });
+        });
+
+        // Iniciar
+        setupCamera();
+    </script>
+</body>
+</html>
