@@ -8,6 +8,7 @@
         /* Base responsive settings */
 
 
+
 /* Navbar responsiveness */
 @media (max-width: 768px) {
     .navbar {
@@ -3624,335 +3625,6 @@
     border-radius: 4px;
     margin-bottom: 20px;
 }
-.faq-section {
-    background-color: #f9f9f9;
-    padding: 80px 20px;
-    margin-top: 40px;
-}
-
-.faq-container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.faq-title {
-    text-align: center;
-    font-size: 42px;
-    color: #333;
-    margin-bottom: 10px;
-    font-weight: normal;
-    font-family: 'Times New Roman', serif;
-}
-
-.faq-subtitle {
-    text-align: center;
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 50px;
-}
-
-.faq-accordion {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.faq-item {
-    margin-bottom: 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-.faq-question {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    cursor: pointer;
-    background-color: #fff;
-    transition: background-color 0.3s ease;
-}
-
-.faq-question:hover {
-    background-color: #f5f5f5;
-}
-
-.faq-question h3 {
-    font-size: 18px;
-    font-weight: 500;
-    margin: 0;
-    color: #333;
-}
-
-.faq-toggle {
-    font-size: 24px;
-    color: #FFD700;
-    transition: transform 0.3s ease;
-}
-
-.faq-item.active .faq-toggle {
-    transform: rotate(45deg);
-}
-
-.faq-answer {
-    padding: 0 20px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-}
-
-.faq-item.active .faq-answer {
-    padding: 0 20px 20px;
-    max-height: 500px;
-}
-
-.faq-answer p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #666;
-    margin: 0;
-}
-
-/* Estilos modificados del footer */
-.footer-section {
-    background-color: #f6f1f1;
-    padding: 80px 0 20px;
-    color: #070707;
-    margin-top: 80px;
-    border-top: 1px solid rgb(255, 255, 255);
-}
-
-.footer-container {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
-    align-items: start; /* Alinea todos los elementos al inicio */
-}
-
-.footer-column {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.footer-logo img {
-    width: 100px;
-    margin-bottom: 20px;
-}
-
-.footer-description {
-    color: #333;
-    line-height: 1.6;
-    margin-bottom: 30px;
-}
-
-.social-links {
-    display: flex;
-    gap: 15px;
-    margin-top: auto;
-}
-
-.social-link {
-    width: 40px;
-    height: 40px;
-    background: rgba(3, 3, 3, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s ease;
-    border-radius: 50%;
-}
-
-.social-link:hover {
-    background: #FFD700;
-}
-
-.footer-title {
-    font-size: 24px;
-    margin-bottom: 25px;
-    font-weight: normal;
-    font-family: 'Times New Roman', serif;
-    position: relative;
-}
-
-.footer-title:after {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 2px;
-    background-color: #FFD700;
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-}
-
-.contact-info {
-    margin-bottom: 30px;
-}
-
-.contact-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.contact-icon {
-    width: 40px;
-    height: 40px;
-    background: rgba(6, 6, 6, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    flex-shrink: 0;
-}
-
-.contact-text {
-    color: rgba(1, 1, 1, 0.7);
-}
-
-.contact-text strong {
-    display: block;
-    color: #0a0909;
-    margin-bottom: 5px;
-}
-
-.map-video-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    height: 250px; /* Altura fija para mantener alineación */
-}
-
-.map-container, .video-container {
-    width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.quick-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.quick-links li {
-    margin-bottom: 12px;
-}
-
-.quick-links a {
-    color: #333;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    display: flex;
-    align-items: center;
-}
-
-.quick-links a:before {
-    content: "→";
-    margin-right: 10px;
-    color: #FFD700;
-}
-
-.quick-links a:hover {
-    color: #FFD700;
-    padding-left: 5px;
-}
-
-.footer-newsletter {
-    margin-top: 30px;
-}
-
-.footer-newsletter p {
-    margin-bottom: 15px;
-    color: #333;
-}
-
-.newsletter-form {
-    display: flex;
-}
-
-.footer-input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px 0 0 4px;
-}
-
-.footer-button {
-    background: #FFD700;
-    color: #000;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.footer-button:hover {
-    background: #f5cc00;
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(0,0,0,0.1);
-    margin-top: 40px;
-    padding-top: 20px;
-    text-align: center;
-    font-size: 14px;
-    color: #666;
-}
-
-/* Responsive */
-@media (max-width: 1200px) {
-    .footer-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .footer-section {
-        margin-top: 60px;
-    }
-}
-
-@media (max-width: 768px) {
-    .footer-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .map-video-container {
-        grid-template-columns: 1fr;
-        height: auto;
-    }
-    
-    .map-container, .video-container {
-        height: 200px;
-    }
-    
-    .footer-section {
-        margin-top: 40px;
-    }
-    
-    .newsletter-form {
-        flex-direction: column;
-    }
-    
-    .footer-input {
-        border-radius: 4px;
-        margin-bottom: 10px;
-    }
-    
-    .footer-button {
-        border-radius: 4px;
-        width: 100%;
-    }
-}
 
 .order-confirmation {
     text-align: center;
@@ -4468,7 +4140,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: rgba(0, 0, 0, 0.4);
+   
     z-index: 2;
 }
 
@@ -4477,7 +4149,7 @@
     font-size: 58px;
     margin-bottom: 20px;
 }
-.product-card .product-image {width: 100%; height: 300px; object-fit: cover;}
+
 .shop-now {
     display: inline-flex;
     align-items: center;
@@ -4557,6 +4229,337 @@
         font-size: 25px;
     }
 }
+.faq-section {
+    background-color: #f9f9f9;
+    padding: 80px 20px;
+    margin-top: 40px;
+}
+
+.faq-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.faq-title {
+    text-align: center;
+    font-size: 42px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: normal;
+    font-family: 'Times New Roman', serif;
+}
+
+.faq-subtitle {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 50px;
+}
+
+.faq-accordion {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    cursor: pointer;
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: #f5f5f5;
+}
+
+.faq-question h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+    color: #333;
+}
+
+.faq-toggle {
+    font-size: 24px;
+    color: #FFD700;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+    padding: 0 20px 20px;
+    max-height: 500px;
+}
+
+.faq-answer p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+    margin: 0;
+}
+
+/* Estilos modificados del footer */
+.footer-section {
+    background-color: #f6f1f1;
+    padding: 80px 0 20px;
+    color: #070707;
+    margin-top: 80px;
+    border-top: 1px solid rgb(255, 255, 255);
+}
+
+.footer-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    align-items: start; /* Alinea todos los elementos al inicio */
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.footer-logo img {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.footer-description {
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: auto;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    background: rgba(3, 3, 3, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+    border-radius: 50%;
+}
+
+.social-link:hover {
+    background: #FFD700;
+}
+
+.footer-title {
+    font-size: 24px;
+    margin-bottom: 25px;
+    font-weight: normal;
+    font-family: 'Times New Roman', serif;
+    position: relative;
+}
+
+.footer-title:after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background-color: #FFD700;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+}
+
+.contact-info {
+    margin-bottom: 30px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(6, 6, 6, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.contact-text {
+    color: rgba(1, 1, 1, 0.7);
+}
+
+.contact-text strong {
+    display: block;
+    color: #0a0909;
+    margin-bottom: 5px;
+}
+
+.map-video-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    height: 250px; /* Altura fija para mantener alineación */
+}
+
+.map-container, .video-container {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.quick-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.quick-links li {
+    margin-bottom: 12px;
+}
+
+.quick-links a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.quick-links a:before {
+    content: "→";
+    margin-right: 10px;
+    color: #FFD700;
+}
+
+.quick-links a:hover {
+    color: #FFD700;
+    padding-left: 5px;
+}
+
+.footer-newsletter {
+    margin-top: 30px;
+}
+
+.footer-newsletter p {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.newsletter-form {
+    display: flex;
+}
+
+.footer-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+}
+
+.footer-button {
+    background: #FFD700;
+    color: #000;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.footer-button:hover {
+    background: #f5cc00;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(0,0,0,0.1);
+    margin-top: 40px;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-section {
+        margin-top: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .map-video-container {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    
+    .map-container, .video-container {
+        height: 200px;
+    }
+    
+    .footer-section {
+        margin-top: 40px;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+    
+    .footer-input {
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+    
+    .footer-button {
+        border-radius: 4px;
+        width: 100%;
+    }
+}
+.product-card .product-image {width: 100%; height: 300px; object-fit: cover;}
+
 </style>
 <!DOCTYPE html>
 <html lang="es">
@@ -5791,331 +5794,7 @@ const products = [
         related: [1, 3, 5],
         new: false
     },
-    {
-        id: 7,
-        name: "JUEGO CEMPASÚCHIL",
-        price: 390000,
-        
-        description: "Majestuoso juego inspirado en la flor de Cempasúchil, símbolo de la cultura mexicana. Cada pieza captura la belleza radiante y los pétalos característicos de esta flor tradicional.",
-        image: "./assents/JUEGO CEMPASÚCHIL.jpeg",
-        category: "juegos",
-        collection: "natura",
-        colors: ["bronce", "dorado"],
-        availability: "En stock",
-        sku: "KRT-NAT-007",
-        type: "set", // para la prueba virtual
-        sale: true,
-        discount: 10,
-        related: [5, 8],
-        new: true
-    },
-    {
-        id: 8,
-        name: "JUEGO HELECHO ESTRELLADO",
-        price: 260000,
-        
-        description: "Fascinante juego que recrea la forma de un helecho con patrón estrellado. El diseño captura la geometría natural de esta planta, creando una pieza con movimiento y textura única.",
-        image: "./assents/JUEGO HELECHO ESTRELLADO.jpeg",
-        category: "juegos",
-        collection: "natura",
-        colors: ["bronce"],
-        availability: "En stock",
-        sku: "KRT-NAT-008",
-        type: "set", // para la prueba virtual
-        sale: false,
-        discount: 0,
-        related: [5, 7],
-        new: false
-    },
-    {
-        id: 9,
-        name: "JUEGO ZENDAYA",
-        price: 270000,
-       
-        description: "Sofisticado juego Zendaya que combina elementos geométricos con líneas fluidas. Inspirado en un estilo contemporáneo y elegante, este conjunto aporta distinción y personalidad.",
-        image: "./assents/JUEGO ZENDAYA.jpeg",
-        category: "juegos",
-        collection: "natura",
-        colors: ["bronce", "dorado"],
-        availability: "En stock",
-        sku: "KRT-NAT-009",
-        type: "set", // para la prueba virtual
-        sale: true,
-        discount: 8,
-        related: [3, 4, 7],
-        new: true
-    },
-    {
-        id: 10,
-        name: "JUEGO CIRCULAR BOHEMIO",
-        price: 180000,
-       
-        description: "Encantador juego con diseño circular de estilo bohemio. Sus formas redondeadas y patrones orgánicos evocan un espíritu libre y una estética natural que complementa cualquier look casual o festivo.",
-        image: "./assents/JUEGO CIRCULAR BOHEMIO.jpeg",
-        category: "juegos",
-        collection: "natura",
-        colors: ["bronce", "dorado"],
-        availability: "En stock",
-        sku: "KRT-NAT-009",
-        type: "set", // para la prueba virtual
-        sale: true,
-        discount: 8,
-        related: [3, 4, 7],
-        new: true
-    },
-    {
-        id: 11,
-        name: "JUEGO LOTO DOBLE ESMERALDA",
-        price: 270000,
-       
-        description: "Exquisito juego inspirado en la flor de loto con doble aplicación de esmeraldas. El diseño representa la pureza y belleza de esta flor sagrada, realzada por el brillo natural de las esmeraldas colombianas.",
-        image: "./assents/JUEGO LOTO ESMERALDA DOBLE.jpg",
-        category: "juegos",
-        collection: "natura",
-        colors: ["bronce", "dorado"],
-        availability: "En stock",
-        sku: "KRT-NAT-009",
-        type: "set", // para la prueba virtual
-        sale: true,
-        discount: 8,
-        related: [3, 4, 7],
-        new: true
-    },
-    {
-        id: 12,
-        name: "JUEGO CAYENA",
-        price: 260000,
-       
-        description: "Elegante juego inspirado en la flor de Cayena, símbolo de delicadeza y belleza tropical. Cada pieza captura la forma distintiva de sus pétalos, creando un conjunto armonioso y sofisticado.",
-        image: "./assents/JUEGO CAYENA ESMERALDA.jpg",
-        category: "juegos",
-        collection: "natura",
-        colors: ["bronce", "dorado"],
-        availability: "En stock",
-        sku: "KRT-NAT-009",
-        type: "set", // para la prueba virtual
-        sale: true,
-        discount: 8,
-        related: [3, 4, 7],
-        new: true
-    },
-    {
-        id: 13,
-        name: "JUEGO NARCISO",
-        price: 300000,
-       
-        description: "Majestuoso juego inspirado en la flor de Narciso, símbolo de renacimiento y nueva vida. El diseño captura la forma elegante y los pétalos delicados de esta flor mitológica.",
-        image: "./assents/JUEGO NARCISO.jpg",
-        category: "juegos",
-        collection: "natura",
-        colors: ["bronce", "dorado"],
-        availability: "En stock",
-        sku: "KRT-NAT-009",
-        type: "set", // para la prueba virtual
-        sale: true,
-        discount: 8,
-        related: [3, 4, 7],
-        new: true
-    },
-    {
-        id: 14,
-        name: "JUEGO FLOR ACORAZONADA ESMERALDA",
-        price: 260000,
-       
-        description: "Delicado juego con diseño de flor acorazonada adornada con esmeraldas. La forma de corazón de los pétalos combina romanticismo y naturaleza, realzados por el brillo verde de las esmeraldas colombianas.",
-        image: "./assents/JUEGO FLOR ACORAZONADA.jpeg",
-        category: "juegos",
-        collection: "natura",
-        colors: ["bronce", "dorado"],
-        availability: "En stock",
-        sku: "KRT-NAT-009",
-        type: "set", // para la prueba virtual
-        sale: true,
-        discount: 8,
-        related: [3, 4, 7],
-        new: true
-    },
-    {
-        id: 15,
-        name: "JUEGO CORAL ESMERALDA",
-        price: 270000,
-       
-        description: "Espectacular juego inspirado en corales marinos adornado con esmeraldas. El diseño captura la textura orgánica y las formas ramificadas de los corales, realzadas por el brillo natural de las esmeraldas.",
-        image: "./assents/JUEGO CORAL ESMERALDA LARGO.jpg",
-        category: "juegos",
-        collection: "natura",
-        colors: ["bronce", "dorado"],
-        availability: "En stock",
-        sku: "KRT-NAT-009",
-        type: "set", // para la prueba virtual
-        sale: true,
-        discount: 8,
-        related: [3, 4, 7],
-        new: true
-    },
-    {
-        id: 16,
-        name: "COLLAR JAZMÍN FILIGRANA",
-        price: 210000,
-       
-        description: "Exquisito collar con diseño de jazmín elaborado con técnica de filigrana. Cada detalle captura la delicadeza y fragancia visual de esta flor, creado con la meticulosa técnica artesanal de la filigrana.",
-        image: "./assents/COLLAR JAZMIN FILIGRANA.jpg",
-        category: "juegos",
-        collection: "natura",
-        colors: ["bronce", "dorado"],
-        availability: "En stock",
-        sku: "KRT-NAT-009",
-        type: "set", // para la prueba virtual
-        sale: true,
-        discount: 8,
-        related: [3, 4, 7],
-        new: true
-    },
-    {
-        id: 17,
-        name: "COLLAR DUO MURRALLA",
-        price: 120000,
-       
-        description: "Elegante collar duo inspirado en las hojas de Murraya. El diseño combina dos elementos complementarios que evocan la frescura y simetría de esta planta aromática.",
-        image: "./assents/COLLAR DUO MURRAYA.jpg",
-        category: "juegos",
-        collection: "natura",
-        colors: ["bronce", "dorado"],
-        availability: "En stock",
-        sku: "KRT-NAT-009",
-        type: "set", // para la prueba virtual
-        sale: true,
-        discount: 8,
-        related: [3, 4, 7],
-        new: true
-    },
-    {
-        id: 18,
-        name: "COLLAR CHOKER",
-        price: 260000,
-       
-        description: "Elegante collar tipo choker que se ajusta perfectamente al cuello. Su diseño minimalista y contemporáneo lo convierte en un complemento versátil para cualquier ocasión, desde lo casual hasta lo formal.",
-        image: "./assents/COLLAR CHOKER.jpeg",
-        category: "juegos",
-        collection: "natura",
-        colors: ["bronce", "dorado"],
-        availability: "En stock",
-        sku: "KRT-NAT-009",
-        type: "set", // para la prueba virtual
-        sale: true,
-        discount: 8,
-        related: [3, 4, 7],
-        new: true
-    },
-    {
-        id: 19,
-        name: "JUEGO CAYENA DOBLE ESMERALDA",
-        price: 270000,
-       
-        description: "Lujoso juego inspirado en la flor de Cayena con doble aplicación de esmeraldas. El diseño captura la belleza exótica de esta flor tropical, realzada por el brillo natural de las esmeraldas colombianas en dos puntos estratégicos.",
-        image: "./assents/JUEGO CAYENA DOBLE ESMERALDA.jpg",
-        category: "juegos",
-        collection: "natura",
-        colors: ["bronce", "dorado"],
-        availability: "En stock",
-        sku: "KRT-NAT-009",
-        type: "set", // para la prueba virtual
-        sale: true,
-        discount: 8,
-        related: [3, 4, 7],
-        new: true
-    },
-    {
-    id: 20,
-    name: "GARGANTILLA FLOR ACORAZONADA",
-    price: 250000,
-   
-    description: "Elegante gargantilla con diseño de flor acorazonada. Esta pieza captura la delicadeza y la forma distintiva de los pétalos en forma de corazón, creando un accesorio romántico y sofisticado que abraza sutilmente el cuello.",
-    image: "./assents/GARGANTILLA FLOR ACORAZONADA.jpg",
-    category: "juegos",
-    collection: "natura",
-    colors: ["bronce", "dorado"],
-    availability: "En stock",
-    sku: "KRT-NAT-020",
-    type: "set", // para la prueba virtual
-    sale: true,
-    discount: 8,
-    related: [3, 4, 7],
-    new: true
-},
-{
-id: 21,
-    name: "JUEGO CHOKER MARIPOSA",
-    price: 20000,
-   
-    description: "Elegante gargantilla con diseño de flor acorazonada. Esta pieza captura la delicadeza y la forma distintiva de los pétalos en forma de corazón, creando un accesorio romántico y sofisticado que abraza sutilmente el cuello.",
-    image: "./assents/JUEGO CHOKER MARIPOSA.jpeg",
-    category: "juegos",
-    collection: "natura",
-    colors: ["bronce", "dorado"],
-    availability: "En stock",
-    sku: "KRT-NAT-020",
-    type: "set", // para la prueba virtual
-    sale: true,
-    discount: 8,
-    related: [3, 4, 7],
-    new: true
-},
-{
-id: 23,
-    name: "COLIBRI HOJAS ESMERALDA",
-    price: 420000,
-   
-    description: "Elegante gargantilla con diseño de flor acorazonada. Esta pieza captura la delicadeza y la forma distintiva de los pétalos en forma de corazón, creando un accesorio romántico y sofisticado que abraza sutilmente el cuello.",
-    image: "./assents/COLIBRI HOJAS ESMERALDA.jpeg",
-    category: "juegos",
-    collection: "natura",
-    colors: ["bronce", "dorado"],
-    availability: "En stock",
-    sku: "KRT-NAT-020",
-    type: "set", // para la prueba virtual
-    sale: true,
-    discount: 8,
-    related: [3, 4, 7],
-    new: true
-},
-{
-id: 24,
-    name: "JUEGO ROSAS DOBLE",
-    price: 280000,
-   
-    description: "Elegante gargantilla con diseño de flor acorazonada. Esta pieza captura la delicadeza y la forma distintiva de los pétalos en forma de corazón, creando un accesorio romántico y sofisticado que abraza sutilmente el cuello.",
-    image: "./assents/JUEGO ROSAS DOBLE.jpeg",
-    category: "juegos",
-    collection: "natura",
-    colors: ["bronce", "dorado"],
-    availability: "En stock",
-    sku: "KRT-NAT-020",
-    type: "set", // para la prueba virtual
-    sale: true,
-    discount: 8,
-    related: [3, 4, 7],
-    new: true
-},
-{
-id: 25,
-    name: "GARGANTILLA ROSAS DOBLE",
-    price: 220000,
-   
-    description: "Elegante gargantilla con diseño de flor acorazonada. Esta pieza captura la delicadeza y la forma distintiva de los pétalos en forma de corazón, creando un accesorio romántico y sofisticado que abraza sutilmente el cuello.",
-    image: "./assents/GARGANTILLA ROSAS DOBLE.jpeg",
-    category: "juegos",
-    collection: "natura",
-    colors: ["bronce", "dorado"],
-    availability: "En stock",
-    sku: "KRT-NAT-020",
-    type: "set", // para la prueba virtual
-    sale: true,
-    discount: 8,
-    related: [3, 4, 7],
-    new: true
-}
-    
+  
 ];
 // Sistema de carrito de compras
 const cart = {
