@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://checkout.bold.co/js/checkout.js" async></script>
+    <script src="https://checkout.bold.co/library/boldPaymentButton.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Korutjewelry - Finalizar Compra</title>
     <style>
         :root {
@@ -526,222 +529,1166 @@
                 height: 250px;
             }
         }
+        .beneficios-container {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.beneficio-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.beneficio-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.beneficio-icon {
+    flex: 0 0 60px;
+    font-size: 24px;
+    color: #333;
+    position: relative;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.beneficio-icon .fas.fa-shield-alt {
+    position: absolute;
+    font-size: 18px;
+    right: 10px;
+    bottom: 10px;
+}
+
+.beneficio-icon .fas.fa-shipping-fast {
+    position: absolute;
+    font-size: 18px;
+    right: 5px;
+    top: 10px;
+}
+
+.beneficio-icon .fas.fa-home {
+    position: absolute;
+    font-size: 18px;
+    right: 5px;
+    bottom: 10px;
+}
+
+.beneficio-texto {
+    flex: 1;
+    padding-left: 15px;
+}
+
+.beneficio-texto h3 {
+    font-size: 18px;
+    margin: 0 0 5px 0;
+    font-weight: bold;
+}
+
+.beneficio-texto p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .beneficio-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .beneficio-icon {
+        margin-bottom: 10px;
+    }
+    
+    .beneficio-texto {
+        padding-left: 0;
+    }
+}
     </style>
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo-container">
-            <img src="./assents/logo.png" alt="Korutjewelry Logo" class="logo-image" onerror="this.src='https://via.placeholder.com/75x65?text=Korut'">
-        </div>
-    </nav>
-    
-    <div class="checkout-container">
-        <div class="producto-container">
-            <h2 class="checkout-titulo">Tu Compra</h2>
-            
-            <!-- Carrusel de imágenes de productos -->
-            <div class="producto-carrusel">
-                <div class="carrusel-container" id="carrusel-container">
-                    <!-- Las imágenes se cargarán dinámicamente -->
-                </div>
-                
-                <div class="carrusel-botones">
-                    <button class="carrusel-btn carrusel-prev">&#10094;</button>
-                    <button class="carrusel-btn carrusel-next">&#10095;</button>
-                </div>
-                
-                <div class="carrusel-indicadores" id="carrusel-indicadores">
-                    <!-- Los indicadores se cargarán dinámicamente -->
-                </div>
-            </div>
-            
-            <!-- Información del producto -->
-            <div class="producto-info">
-                <h3 class="producto-nombre" id="producto-nombre">Cargando producto...</h3>
-
-                <div class="producto-cantidad">
-                    <span class="cantidad-label">Cantidad:</span>
-                    <span class="cantidad-valor" id="cantidad-valor">1</span>
-                </div>
-                
-                <div class="producto-precio" id="producto-precio">$0.00 COP</div>
-            </div>
-        
-                
-                <div class="producto-descripcion" id="producto-descripcion">
-                    <p>Joya elaborada con los mejores materiales, diseño exclusivo de Korutjewelry. Hecho a mano con bronce bañado en oro de 24k  Cada pieza es única, elaborada por artesanos</p>
-                    <p>Nuestras joyas son hipoalergénicas y libres de níquel, perfectas para el uso diario o para ocasiones especiales.</p>
-                </div>
-                
-            </div>  
-        
-        <div class="opciones-pago">
-            <h2 class="checkout-titulo">Opciones de Pago</h2>
-            <p class="nota-seguridad">
-                🔒 Pagos 100% seguros - Información encriptada
-            </p>
-            <br>
-            <br>
-            <div class="resumen-compra">
-                <div class="resumen-item">
-                    <span>Subtotal:</span>
-                    <span id="resumen-subtotal">$0.00 COP</span>
-                </div>
-                <div class="resumen-item">
-                    <span>Envío:</span>
-                    <span id="resumen-envio">Calculado en el siguiente paso</span>
-                </div>
-                <div class="resumen-total">
-                    <span>Total:</span>
-                    <span id="resumen-total">$0.00 COP</span>
-                </div>
-            </div>
-            
-            <div class="botones-pago">
-                <button class="btn-pago btn-directo" id="compra-directa">
-                    ⚡ COMPRA DIRECTA
-                </button>
-                
-                <div class="separador">o</div>
-                
-                <button class="btn-pago btn-finalizar" id="finalizar-compra">
-                    FINALIZAR COMPRA
-                </button>
-                
-                <button class="btn-pago btn-contraentrega" id="pago-contraentrega">
-                    PAGO CONTRA ENTREGA
-                </button>
-            </div>
-            
-            <div class="metodos-pago">
-                <img src="./assents/visa-icon.png" alt="Visa" class="metodo-icon" onerror="this.src='https://via.placeholder.com/40'">
-                <img src="./assents/mastercard-icon.png" alt="Mastercard" class="metodo-icon" onerror="this.src='https://via.placeholder.com/40'">
-                <img src="./assents/pse-icon.png" alt="PSE" class="metodo-icon" onerror="this.src='https://via.placeholder.com/40'">
-                <img src="./assents/efecty-icon.png" alt="Efecty" class="metodo-icon" onerror="this.src='https://via.placeholder.com/40'">
-            </div>
-            
-           
-        </div>
-    </div>
-    
-    <!-- Modal para el QR -->
-    <div id="qr-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" id="close-qr">&times;</span>
-            <h3 class="modal-title">Pago con código QR</h3>
-            <div class="qr-container">
-                <p>Escanea este código QR para realizar el pago:</p>
-                <img src="./assents/QR-Juan.jpeg" alt="QR Code" class="qr-code" onerror="this.src='https://via.placeholder.com/300'">
-                <p>Una vez realizado el pago, envíanos el comprobante por WhatsApp</p>
-                <button class="btn-form" id="enviar-comprobante">ENVIAR COMPROBANTE</button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Modal para el formulario de contra entrega -->
-    <div id="formulario-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" id="close-formulario">&times;</span>
-            <h3 class="modal-title">Datos para envío</h3>
-            
-            <div class="form-group">
-                <label for="nombre">Nombre completo *</label>
-                <input type="text" id="nombre" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="telefono">Teléfono *</label>
-                <input type="tel" id="telefono" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="ciudad">Ciudad *</label>
-                <select id="ciudad" required>
-                    <option value="">Selecciona una ciudad</option>
-                    <option value="Bogotá">Bogotá</option>
-                    <option value="Medellín">Medellín</option>
-                    <option value="Cali">Cali</option>
-                    <option value="Barranquilla">Barranquilla</option>
-                    <option value="Cartagena">Cartagena</option>
-                    <option value="Otra">Otra ciudad</option>
-                </select>
-            </div>
-            
-            <div class="form-group" id="otra-ciudad-container" style="display: none;">
-                <label for="otra-ciudad">Especifica la ciudad *</label>
-                <input type="text" id="otra-ciudad">
-            </div>
-            
-            <div class="form-group">
-                <label for="direccion">Dirección completa *</label>
-                <input type="text" id="direccion" required placeholder="Calle 123 # 45-67, Apto 101">
-            </div>
-            
-            <div class="form-group">
-                <label for="referencias">Referencias adicionales</label>
-                <textarea id="referencias" rows="2" placeholder="Punto de referencia, indicaciones, etc."></textarea>
-            </div>
-            
-            <button class="btn-form" id="enviar-contraentrega">FINALIZAR PEDIDO</button>
-        </div>
-    </div>
-    
-    <a href="https://wa.me/573236239297" class="whatsapp-btn" target="_blank">
-        &#128222;
-    </a>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Referencias a los modales
-            const qrModal = document.getElementById('qr-modal');
-            const formularioModal = document.getElementById('formulario-modal');
-            
-            // Referencias a los botones de cierre
-            const closeQR = document.getElementById('close-qr');
-            const closeFormulario = document.getElementById('close-formulario');
-            
-            // Recuperar los datos del carrito desde localStorage
-            const cartData = JSON.parse(localStorage.getItem('cartSummary'));
-            
-            if (!cartData || !cartData.items || cartData.items.length === 0) {
-                // Si no hay datos o el carrito está vacío, redirigir a la página principal
-                alert('No hay productos en el carrito');
-                window.location.href = 'index.html';
-                return;
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- PASO 1: Añadir el script de Bold en el head -->
+        <script src="https://checkout.bold.co/library/boldPaymentButton.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <title>Korutjewelry - Finalizar Compra</title>
+        <style>
+            :root {
+                --primary: #FFD700;
+                --dark: #fbfbfb;
+                --darker: #fefcfc;
+                --light: #070707;
+                --gray: rgb(255, 255, 255);
+                --yellow: #ffd233;
+                --header-height-mobile: 60px;
             }
+    
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Times New Roman', serif;
+            }
+    
+            body {
+                background-color: var(--darker);
+                color: var(--light);
+            }
+    
+            /* Navbar */
+            .navbar {
+                background-color: var(--dark);
+                padding: 20px 40px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid rgb(255, 255, 255);
+                position: fixed;
+                width: 100%;
+                top: 0;
+                z-index: 1000;
+            }
+    
+            .logo-container {
+                display: flex;
+                align-items: center;
+                gap: 55px;
+            }
+    
+            .logo-image {
+                width: 75px;
+                height: 65px;
+                object-fit: contain;
+                display: block;
+            }
+    
+            /* Contenedor principal */
+            .checkout-container {
+                max-width: 1200px;
+                margin: 120px auto 40px auto;
+                padding: 0 20px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+    
+            /* Estilos para el producto */
+            .producto-container {
+                flex: 1;
+                min-width: 300px;
+                background: #ffffff;
+                border-radius: 10px;
+                padding: 30px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            }
+    
+            .checkout-titulo {
+                font-size: 24px;
+                margin-bottom: 30px;
+                text-align: center;
+                font-weight: normal;
+            }
+    
+            /* Carrusel de imágenes */
+            .producto-carrusel {
+                position: relative;
+                margin-bottom: 30px;
+                overflow: hidden;
+                border-radius: 10px;
+            }
+    
+            .carrusel-container {
+                display: flex;
+                transition: transform 0.5s ease;
+            }
+    
+            .carrusel-slide {
+                flex: 0 0 100%;
+                height: 300px;
+            }
+    
+            .carrusel-imagen {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+    
+            .carrusel-botones {
+                position: absolute;
+                top: 50%;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                transform: translateY(-50%);
+                z-index: 10;
+            }
+    
+            .carrusel-btn {
+                background: rgba(0, 0, 0, 0.5);
+                color: white;
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                font-size: 18px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+    
+            .carrusel-indicadores {
+                position: absolute;
+                bottom: 15px;
+                left: 0;
+                right: 0;
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+            }
+    
+            .indicador {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.5);
+                cursor: pointer;
+            }
+    
+            .indicador.active {
+                background: white;
+            }
+    
+            /* Información del producto */
+            .producto-info {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+    
+            .producto-nombre {
+                font-size: 24px;
+                margin-bottom: 15px;
+                font-weight: normal;
+            }
+    
+            .producto-descripcion {
+                color: #555;
+                line-height: 1.6;
+                margin-bottom: 20px;
+                text-align: left;
+            }
+    
+            .producto-precio {
+                font-size: 28px;
+                font-weight: bold;
+                margin-top: 20px;
+            }
+    
+            .producto-cantidad {
+                margin-top: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+            }
+    
+            .cantidad-label {
+                font-size: 16px;
+            }
+    
+            .cantidad-valor {
+                font-weight: bold;
+                padding: 5px 10px;
+                background: #f5f5f5;
+                border-radius: 4px;
+            }
+    
+            /* Estilos para las opciones de pago */
+            .opciones-pago {
+                flex: 1;
+                min-width: 300px;
+                background: #ffffff;
+                border-radius: 10px;
+                padding: 30px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            }
+    
+            .resumen-compra {
+                margin-bottom: 30px;
+            }
+    
+            .resumen-item {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 10px;
+                font-size: 16px;
+            }
+    
+            .resumen-total {
+                display: flex;
+                justify-content: space-between;
+                font-weight: bold;
+                font-size: 20px;
+                border-top: 1px solid #eee;
+                margin-top: 15px;
+                padding-top: 15px;
+            }
+    
+            .botones-pago {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                margin-top: 30px;
+            }
+    
+            .btn-pago {
+                padding: 15px;
+                font-size: 16px;
+                font-weight: bold;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                text-align: center;
+                transition: all 0.3s ease;
+            }
+    
+            .btn-directo {
+                background: var(--yellow);
+                color: #000000;
+                position: relative;
+                overflow: hidden;
+            }
+    
+            .btn-directo::after {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+                transform: rotate(30deg);
+                transition: transform 0.5s ease;
+                opacity: 0;
+            }
+    
+            .btn-directo:hover::after {
+                transform: rotate(30deg) translate(50%, 50%);
+                opacity: 1;
+            }
+    
+            .btn-directo:hover {
+                background: #FFC800;
+            }
+    
+            .btn-finalizar {
+                background: #333333;
+                color: #ffffff;
+            }
+    
+            .btn-finalizar:hover {
+                background: #555555;
+            }
+    
+            .btn-contraentrega {
+                background: #ffffff;
+                color: #333333;
+                border: 2px solid #333333;
+            }
+    
+            .btn-contraentrega:hover {
+                background: #f5f5f5;
+            }
+    
+            .separador {
+                display: flex;
+                align-items: center;
+                text-align: center;
+                color: #666;
+                margin: 20px 0;
+            }
+    
+            .separador::before,
+            .separador::after {
+                content: '';
+                flex: 1;
+                border-bottom: 1px solid #eee;
+            }
+    
+            .separador::before {
+                margin-right: 10px;
+            }
+    
+            .separador::after {
+                margin-left: 10px;
+            }
+    
+            .metodos-pago {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                margin: 30px 0;
+            }
+    
+            .metodo-icon {
+                width: 40px;
+                height: 40px;
+            }
+    
+            .qr-code {
+                width: 300px;
+                height: 300px;
+                margin: 0 auto 15px;
+                object-fit: contain;
+            }
+    
+            .nota-seguridad {
+                text-align: center;
+                margin-top: 20px;
+                color: #666;
+                font-size: 14px;
+            }
+    
+            /* WhatsApp Button */
+            .whatsapp-btn {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+                background-color: #25D366;
+                color: white;
+                border-radius: 50%;
+                text-align: center;
+                font-size: 35px;
+                box-shadow: 2px 2px 3px #999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+                z-index: 1000;
+                animation: pulse 1.5s infinite;
+            }
+    
+            @keyframes pulse {
+                0% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.1);
+                }
+                100% {
+                    transform: scale(1);
+                }
+            }
+    
+            /* Estilos para Modal */
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1001;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(0,0,0,0.5);
+                animation: fadeIn 0.3s;
+            }
+    
+            @keyframes fadeIn {
+                from {opacity: 0}
+                to {opacity: 1}
+            }
+    
+            .modal-content {
+                background-color: #fefefe;
+                margin: 5% auto;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                width: 90%;
+                max-width: 600px;
+                animation: slideIn 0.4s;
+                position: relative;
+            }
+    
+            @keyframes slideIn {
+                from {top: -300px; opacity: 0}
+                to {top: 0; opacity: 1}
+            }
+    
+            .close-modal {
+                position: absolute;
+                right: 20px;
+                top: 15px;
+                color: #aaa;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+    
+            .close-modal:hover {
+                color: #333;
+            }
+    
+            .modal-title {
+                text-align: center;
+                margin-bottom: 20px;
+                font-size: 24px;
+                font-weight: normal;
+            }
+    
+            /* Estilos para el formulario */
+            .form-group {
+                margin-bottom: 15px;
+            }
+    
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+    
+            .form-group input, 
+            .form-group select,
+            .form-group textarea {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+    
+            .form-group input:focus, 
+            .form-group select:focus,
+            .form-group textarea:focus {
+                outline: none;
+                border-color: var(--yellow);
+            }
+    
+            .btn-form {
+                background: var(--yellow);
+                color: #000;
+                padding: 15px;
+                width: 100%;
+                font-size: 16px;
+                font-weight: bold;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: 10px;
+                transition: all 0.3s ease;
+            }
+            .carrusel-container {
+                display: flex;
+                transition: transform 0.5s ease;
+                width: 100%;
+            }
+    
+            .carrusel-slide {
+                flex: 0 0 100%;
+                min-width: 100%;
+            }
+            .btn-form:hover {
+                background: #FFC800;
+            }
+    
+            /* QR Modal */
+            .qr-container {
+                text-align: center;
+            }
+    
+            .qr-container p {
+                margin: 15px 0;
+            }
+    
+            /* Responsive styles */
+            @media (max-width: 768px) {
+                .checkout-container {
+                    flex-direction: column;
+                    margin-top: 100px;
+                }
+    
+                .navbar {
+                    padding: 10px 20px;
+                }
+    
+                .logo-image {
+                    width: 50px;
+                    height: 40px;
+                }
+    
+                .carrusel-slide {
+                    height: 250px;
+                }
+    
+                .modal-content {
+                    width: 95%;
+                    margin: 10% auto;
+                    padding: 20px;
+                }
+                
+                .qr-code {
+                    width: 250px;
+                    height: 250px;
+                }
+            }
+            .beneficios-container {
+                background: #ffffff;
+                border-radius: 10px;
+                padding: 30px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+                margin-bottom: 30px;
+            }
+    
+            .beneficio-item {
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid #f0f0f0;
+            }
+    
+            .beneficio-item:last-child {
+                margin-bottom: 0;
+                padding-bottom: 0;
+                border-bottom: none;
+            }
+    
+            .beneficio-icon {
+                flex: 0 0 60px;
+                font-size: 24px;
+                color: #333;
+                position: relative;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+    
+            .beneficio-icon .fas.fa-shield-alt {
+                position: absolute;
+                font-size: 18px;
+                right: 10px;
+                bottom: 10px;
+            }
+    
+            .beneficio-icon .fas.fa-shipping-fast {
+                position: absolute;
+                font-size: 18px;
+                right: 5px;
+                top: 10px;
+            }
+    
+            .beneficio-icon .fas.fa-home {
+                position: absolute;
+                font-size: 18px;
+                right: 5px;
+                bottom: 10px;
+            }
+    
+            .beneficio-texto {
+                flex: 1;
+                padding-left: 15px;
+            }
+    
+            .beneficio-texto h3 {
+                font-size: 18px;
+                margin: 0 0 5px 0;
+                font-weight: bold;
+            }
+    
+            .beneficio-texto p {
+                margin: 0;
+                font-size: 14px;
+                color: #666;
+            }
+    
+            @media (max-width: 768px) {
+                .beneficio-item {
+                    flex-direction: column;
+                    text-align: center;
+                }
+                
+                .beneficio-icon {
+                    margin-bottom: 10px;
+                }
+                
+                .beneficio-texto {
+                    padding-left: 0;
+                }
+            }
+    
+            /* Estilo para el botón Bold (opcional) */
+            .bold-button-container {
+                margin: 0 auto;
+                display: block;
+                text-align: center;
+            }
+            /* Estilos para mejorar los métodos de pago */
+
+/* Estilos para la sección de medios de pago */
+.metodos-pago {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+/* Estilos para los iconos de método de pago */
+.metodo-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+    filter: grayscale(20%);
+}
+
+.metodo-icon:hover {
+    transform: translateY(-3px);
+    filter: grayscale(0%);
+}
+
+/* Separadores de categoría de pago */
+.payment-category {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin: 8px 0;
+    padding: 5px;
+    background: #f0f0f0;
+    border-radius: 5px;
+}
+
+/* Mejoras para los botones de pago */
+.btn-pago {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-pago::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+    transform: rotate(30deg);
+    transition: transform 0.5s ease;
+    opacity: 0;
+}
+
+.btn-pago:hover::after {
+    transform: rotate(30deg) translate(50%, 50%);
+    opacity: 1;
+}
+
+/* Personalizar el botón QR */
+.btn-finalizar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-finalizar::before {
+    content: '\f029'; /* Código Font Awesome para QR */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+
+/* Personalizar el botón contra entrega */
+.btn-contraentrega {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-contraentrega::before {
+    content: '\f0d1'; /* Código Font Awesome para camión */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+
+/* Resaltar la nota de seguridad */
+.nota-seguridad {
+    background-color: #f8f9fa;
+    border-left: 4px solid #ffd233;
+    padding: 10px 15px;
+    border-radius: 0 5px 5px 0;
+    margin: 20px 0;
+    font-size: 14px;
+    color: #333;
+    text-align: left;
+}
+
+/* Mejorar el separador */
+.separador {
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #333;
+}
+
+.separador::before,
+.separador::after {
+    border-bottom: 2px solid #f0f0f0;
+}
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+    .metodos-pago {
+        gap: 10px;
+    }
+    
+    .metodo-icon {
+        width: 35px;
+        height: 35px;
+    }
+}
+        </style>
+    </head>
+    
+    <body>
+        <!-- Navbar -->
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <script src="https://checkout.bold.co/js/checkout.js" async></script>
+            <script src="https://checkout.bold.co/library/boldPaymentButton.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+            <title>Korutjewelry - Finalizar Compra</title>
+        </head>
+        <body>
+            <!-- Navbar -->
+            <nav class="navbar">
+                <div class="logo-container">
+                    <img src="./assents/logo.png" alt="Korutjewelry Logo" class="logo-image" onerror="this.src='https://via.placeholder.com/75x65?text=Korut'">
+                </div>
+            </nav>
             
-            // Mostrar los productos en el carrusel
-            const carruselContainer = document.getElementById('carrusel-container');
-            const indicadoresContainer = document.getElementById('carrusel-indicadores');
+            <div class="checkout-container">
+                <div class="producto-container">
+                    <h2 class="checkout-titulo">Tu Compra</h2>
+                    
+                    <!-- Carrusel de imágenes de productos -->
+                    <div class="producto-carrusel">
+                        <div class="carrusel-container" id="carrusel-container">
+                            <!-- Las imágenes se cargarán dinámicamente -->
+                        </div>
+                        
+                        <div class="carrusel-botones">
+                            <button class="carrusel-btn carrusel-prev">&#10094;</button>
+                            <button class="carrusel-btn carrusel-next">&#10095;</button>
+                        </div>
+                        
+                        <div class="carrusel-indicadores" id="carrusel-indicadores">
+                            <!-- Los indicadores se cargarán dinámicamente -->
+                        </div>
+                    </div>
+                    
+                    <!-- Información del producto -->
+                    <div class="producto-info">
+                        <h3 class="producto-nombre" id="producto-nombre">Cargando producto...</h3>
+        
+                        <div class="producto-cantidad">
+                            <span class="cantidad-label">Cantidad:</span>
+                            <span class="cantidad-valor" id="cantidad-valor">1</span>
+                        </div>
+                        
+                        <div class="producto-precio" id="producto-precio">$0.00 COP</div>
+                    </div>
+                
+                        
+                    <div class="producto-descripcion" id="producto-descripcion">
+                        <p>Joya elaborada con los mejores materiales, diseño exclusivo de Korutjewelry. Hecho a mano con bronce bañado en oro de 24k  Cada pieza es única, elaborada por artesanos</p>
+                        <p>Nuestras joyas son hipoalergénicas y libres de níquel, perfectas para el uso diario o para ocasiones especiales.</p>
+                    </div>
+                        
+                </div>  
+                
+                <div class="opciones-pago">
+                    <h2 class="checkout-titulo">Opciones de Pago</h2>
+                    <p class="nota-seguridad">
+                        🔒 Pagos 100% seguros - Información encriptada
+                    </p>
+                    <br>
+                    <br>
+                    <div class="resumen-compra">
+                        <div class="resumen-item">
+                            <span>Subtotal:</span>
+                            <span id="resumen-subtotal">$0.00 COP</span>
+                        </div>
+                        <div class="resumen-item">
+                            <span>Envío:</span>
+                            <span id="resumen-envio">Calculado en el siguiente paso</span>
+                        </div>
+                        <div class="resumen-total">
+                            <span>Total:</span>
+                            <span id="resumen-total">$0.00 COP</span>
+                        </div>
+                    </div>
+                    <div class="separador">Medios De Pago</div>
+                    <div class="botones-pago">
+                        <!-- Bold Payment -->
+                        <p style="text-align: center; margin-bottom: 10px;"><b>Bold Checkout acepta:</b></p>
+                        
+                        <!-- Botón de pagos Bold -->
+                        <script
+                        data-bold-button
+                        data-api-key="s2HXCW7cnFaL4tRp27ReRQ"
+                        data-description="Pago a traves de Embedded Checkout"
+                        data-redirection-url="https://micomercio.com/pagos/resultado"
+                        data-render-mode="embedded"
+                        ></script>
+                        
+                        <div class="metodos-pago">
+                             <!-- Visa -->
+    <svg class="metodo-icon" width="40" height="40" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+        <rect width="1000" height="1000" rx="100" fill="#white"/>
+        <path d="M651.4,329.2H547.9c-32.1,0-56.2,9.4-70.4,43.9l-199.8,454h140.9c0,0,23.1-60.9,28.3-74.2c15.5,0,152.9,0.2,172.6,0.2c4,17.2,16.4,74,16.4,74h124.6L651.4,329.2z M478.5,630.8c11.1-28.4,53.6-137.6,53.6-137.6c-0.8,1.3,11-28.7,17.9-47.3l9.1,42.9c0,0,25.8,118.2,31.1,142H478.5z" fill="#00579F"/>
+        <path d="M372.3,329.2L247,585.1l-13.4-65.6c-23.3-75.1-96-156.2-177.3-196.9l114.6,407.5l135.3-0.1L459,329.2H372.3z" fill="#00579F"/>
+        <path d="M213.1,329.2H11.9l-2,9.4c156.7,38,260.4,129.7,303.4,240l-43.8-210.9C262.6,336.3,240.8,330.2,213.1,329.2z" fill="#FAA61A"/>
+    </svg>
+    
+    <!-- Mastercard -->
+    <svg class="metodo-icon" width="40" height="40" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+        <rect width="1000" height="1000" rx="100" fill="white"/>
+        <circle cx="350" cy="500" r="230" fill="#EB001B"/>
+        <circle cx="650" cy="500" r="230" fill="#F79E1B"/>
+        <path d="M500 350c63.8 76.8 63.8 183.2 0 260-63.8-76.8-63.8-183.2 0-260z" fill="#FF5F00"/>
+    </svg>
+    
+    <!-- PSE -->
+    <svg class="metodo-icon" width="40" height="40" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+        <rect width="1000" height="1000" rx="100" fill="white"/>
+        <path d="M300 300h400v400h-400z" fill="#00A1DF"/>
+        <path d="M300 300h133.3v133.3H300z" fill="#EC1B2E"/>
+        <path d="M350 400c0 27.6-22.4 50-50 50v-100C327.6 350 350 372.4 350 400z" fill="white"/>
+        <path d="M450 600h100v-100h-100c-27.6 0-50 22.4-50 50S422.4 600 450 600z" fill="white"/>
+        <path d="M450 450h100v-50h-100c-27.6 0-50 22.4-50 50h50z" fill="white"/>
+    </svg>
+    
+    <!-- Efecty -->
+    <svg class="metodo-icon" width="40" height="40" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+        <rect width="1000" height="1000" rx="100" fill="white"/>
+        <path d="M200 400h600v200H200z" fill="#EC1B2E"/>
+        <path d="M300 450h400v100H300z" fill="white"/>
+        <text x="500" y="520" text-anchor="middle" font-size="90" font-family="Arial" font-weight="bold" fill="#EC1B2E">efecty</text>
+    </svg>
+    
+    <!-- American Express -->
+    <svg class="metodo-icon" width="40" height="40" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+        <rect width="1000" height="1000" rx="100" fill="white"/>
+        <path d="M500 250h350c55.2 0 100 44.8 100 100v300c0 55.2-44.8 100-100 100H150c-55.2 0-100-44.8-100-100V350c0-55.2 44.8-100 100-100h350z" fill="#006FCF"/>
+        <path d="M379.6 380.9l-59.2 129.4h71.2l11-26.7h25.3l11 26.7h78.1v-20.4l7 20.4h41l7-20.9v20.9h164.4l20-20.8 18.7 20.8 84.4 0.1-60-64.9 60-64.5H766l-19 20-17.7-20h-178v19.2l-6.3-19.2h-66.8l-41.6 95.7-10.4-95.7H379.6z M424 425.6l16.7 40.7h-33.5L424 425.6z" fill="white"/>
+    </svg>
+    
+    <!-- Baloto -->
+    <svg class="metodo-icon" width="40" height="40" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+        <rect width="1000" height="1000" rx="100" fill="white"/>
+        <circle cx="500" cy="500" r="250" fill="#0033A0"/>
+        <path d="M400 400c-27.6 0-50 22.4-50 50v100c0 27.6 22.4 50 50 50h200c27.6 0 50-22.4 50-50V450c0-27.6-22.4-50-50-50H400zm0 50h200v100H400V450z" fill="white"/>
+        <path d="M400 450h50v100h-50z" fill="white"/>
+        <path d="M550 450h50v100h-50z" fill="white"/>
+    </svg>
+                        </div>
+                        
+                        <!-- QR Payment -->
+                        <p style="text-align: center; margin-top: 15px; margin-bottom: 10px;"><b>Escanea el QR con estas apps:</b></p>
+                        <button class="btn-pago btn-finalizar" id="finalizar-compra">
+                            Paga Con QR
+                        </button>
+                        
+                        <div class="metodos-pago">
+                             <!-- Nequi -->
+    <svg class="metodo-icon" width="40" height="40" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+        <rect width="1000" height="1000" rx="100" fill="white"/>
+        <path d="M200 200h600v600H200z" fill="#FF35A0"/>
+        <path d="M350 650c-82.8 0-150-67.2-150-150s67.2-150 150-150v60c-49.7 0-90 40.3-90 90s40.3 90 90 90h300c49.7 0 90-40.3 90-90s-40.3-90-90-90v-60c82.8 0 150 67.2 150 150s-67.2 150-150 150H350z" fill="white"/>
+        <circle cx="350" cy="500" r="50" fill="white"/>
+        <circle cx="650" cy="500" r="50" fill="white"/>
+    </svg>
+    
+    <!-- Bancolombia -->
+    <svg class="metodo-icon" width="40" height="40" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+        <rect width="1000" height="1000" rx="100" fill="white"/>
+        <path d="M200 300h600v400H200z" fill="#FFC220"/>
+        <path d="M200 425h600v150H200z" fill="#003366"/>
+        <path d="M400 350c-22.1 0-40 17.9-40 40v220c0 22.1 17.9 40 40 40h200c22.1 0 40-17.9 40-40V390c0-22.1-17.9-40-40-40H400z" fill="white"/>
+        <text x="500" y="525" text-anchor="middle" font-size="120" font-family="Arial" font-weight="bold" fill="#003366">B</text>
+    </svg>
+    
+    <!-- Daviplata -->
+    <svg class="metodo-icon" width="40" height="40" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+        <rect width="1000" height="1000" rx="100" fill="white"/>
+        <path d="M200 300h600v400H200z" fill="#E3262E"/>
+        <path d="M350 400c-24.9 0-45 20.1-45 45v110c0 24.9 20.1 45 45 45h300c24.9 0 45-20.1 45-45V445c0-24.9-20.1-45-45-45H350zm150 50l90 50-90 50V450z" fill="white"/>
+    </svg>
+                        </div>
+                        
+                        <button class="btn-pago btn-contraentrega" id="pago-contraentrega">
+                            PAGO CONTRA ENTREGA
+                        </button>
+                        <div class="beneficios-container">
+                            <h2 class="checkout-titulo">Por qué comprar con nosotros</h2>
+                            
+                            <div class="beneficio-item">
+                                <div class="beneficio-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="beneficio-texto">
+                                    <h3>COMPRA SEGURA</h3>
+                                    <p>ELIGE TU MEDIO DE PAGO FAVORITO.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="beneficio-item">
+                                <div class="beneficio-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <i class="fas fa-shipping-fast"></i>
+                                </div>
+                                <div class="beneficio-texto">
+                                    <h3>ENVÍOS RÁPIDOS</h3>
+                                    <p>COBERTURA A NIVEL NACIONAL.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="beneficio-item">
+                                <div class="beneficio-icon">
+                                    <i class="fas fa-truck"></i>
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <div class="beneficio-texto">
+                                    <h3>CONTRA ENTREGA</h3>
+                                    <p>PAGA EN LA PUERTA DE TU CASA.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            carruselContainer.innerHTML = '';
-            indicadoresContainer.innerHTML = '';
+            <!-- Modal para el QR -->
+            <div id="qr-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-modal" id="close-qr">&times;</span>
+                    <h3 class="modal-title">Pago con código QR</h3>
+                    <div class="qr-container">
+                        <p>Escanea este código QR con Nequi, Bancolombia App o Daviplata para realizar el pago:</p>
+                        <img src="./assents/QR-Juan.jpeg" alt="QR Code" class="qr-code" onerror="this.src='https://via.placeholder.com/300'">
+                        <p>Una vez realizado el pago, envíanos el comprobante por WhatsApp</p>
+                        <button class="btn-form" id="enviar-comprobante">ENVIAR COMPROBANTE</button>
+                    </div>
+                </div>
+            </div>
             
-            // Si solo hay un producto, mostrar solo una imagen sin carrusel
-            if (cartData.items.length === 1) {
-                const item = cartData.items[0];
+            <!-- Modal para el formulario de contra entrega -->
+            <div id="formulario-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-modal" id="close-formulario">&times;</span>
+                    <h3 class="modal-title">Datos para envío</h3>
+                    
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo *</label>
+                        <input type="text" id="nombre" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telefono">Teléfono *</label>
+                        <input type="tel" id="telefono" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ciudad">Ciudad *</label>
+                        <select id="ciudad" required>
+                            <option value="">Selecciona una ciudad</option>
+                            <option value="Bogotá">Bogotá</option>
+                            <option value="Medellín">Medellín</option>
+                            <option value="Cali">Cali</option>
+                            <option value="Barranquilla">Barranquilla</option>
+                            <option value="Cartagena">Cartagena</option>
+                            <option value="Otra">Otra ciudad</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="otra-ciudad-container" style="display: none;">
+                        <label for="otra-ciudad">Especifica la ciudad *</label>
+                        <input type="text" id="otra-ciudad">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="direccion">Dirección completa *</label>
+                        <input type="text" id="direccion" required placeholder="Calle 123 # 45-67, Apto 101">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="referencias">Referencias adicionales</label>
+                        <textarea id="referencias" rows="2" placeholder="Punto de referencia, indicaciones, etc."></textarea>
+                    </div>
+                    
+                    <button class="btn-form" id="enviar-contraentrega">FINALIZAR PEDIDO</button>
+                </div>
+            </div>
+            
+            <a href="https://wa.me/573236239237" class="whatsapp-btn" target="_blank">
+                &#128222;
+            </a>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Referencias a los modales
+                const qrModal = document.getElementById('qr-modal');
+                const formularioModal = document.getElementById('formulario-modal');
                 
-                const slide = document.createElement('div');
-                slide.className = 'carrusel-slide';
-                slide.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}" class="carrusel-imagen" onerror="this.src='./assents/producto-default.jpg'">
-                `;
-                carruselContainer.appendChild(slide);
+                // Referencias a los botones de cierre
+                const closeQR = document.getElementById('close-qr');
+                const closeFormulario = document.getElementById('close-formulario');
                 
-                // Ocultar los botones y los indicadores
-                document.querySelector('.carrusel-botones').style.display = 'none';
-                indicadoresContainer.style.display = 'none';
+                // Recuperar los datos del carrito desde localStorage
+                const cartData = JSON.parse(localStorage.getItem('cartSummary'));
                 
-                // Actualizar la información del producto
-                document.getElementById('producto-nombre').textContent = item.name;
-                document.getElementById('cantidad-valor').textContent = item.quantity;
-                document.getElementById('producto-precio').textContent = formatCurrency(item.price * item.quantity);
+                if (!cartData || !cartData.items || cartData.items.length === 0) {
+                    // Si no hay datos o el carrito está vacío, redirigir a la página principal
+                    alert('No hay productos en el carrito');
+                    window.location.href = 'index.html';
+                    return;
+                }
                 
-            } else {
-                // Si hay múltiples productos, configurar el carrusel
-                cartData.items.forEach((item, index) => {
-                    // Crear slide
+                // Mostrar los productos en el carrusel
+                const carruselContainer = document.getElementById('carrusel-container');
+                const indicadoresContainer = document.getElementById('carrusel-indicadores');
+                
+                carruselContainer.innerHTML = '';
+                indicadoresContainer.innerHTML = '';
+                
+                // Si solo hay un producto, mostrar solo una imagen sin carrusel
+                if (cartData.items.length === 1) {
+                    const item = cartData.items[0];
+                    
                     const slide = document.createElement('div');
                     slide.className = 'carrusel-slide';
                     slide.innerHTML = `
@@ -749,82 +1696,102 @@
                     `;
                     carruselContainer.appendChild(slide);
                     
-                    // Crear indicador
-                    const indicador = document.createElement('div');
-                    indicador.className = index === 0 ? 'indicador active' : 'indicador';
-                    indicador.onclick = () => goToSlide(index);
-                    indicadoresContainer.appendChild(indicador);
-                });
+                    // Ocultar los botones y los indicadores
+                    document.querySelector('.carrusel-botones').style.display = 'none';
+                    indicadoresContainer.style.display = 'none';
+                    
+                    // Actualizar la información del producto
+                    document.getElementById('producto-nombre').textContent = item.name;
+                    document.getElementById('cantidad-valor').textContent = item.quantity;
+                    document.getElementById('producto-precio').textContent = formatCurrency(item.price * item.quantity);
+                    
+                } else {
+                    // Si hay múltiples productos, configurar el carrusel
+                    cartData.items.forEach((item, index) => {
+                        // Crear slide
+                        const slide = document.createElement('div');
+                        slide.className = 'carrusel-slide';
+                        slide.innerHTML = `
+                            <img src="${item.image}" alt="${item.name}" class="carrusel-imagen" onerror="this.src='./assents/producto-default.jpg'">
+                        `;
+                        carruselContainer.appendChild(slide);
+                        
+                        // Crear indicador
+                        const indicador = document.createElement('div');
+                        indicador.className = index === 0 ? 'indicador active' : 'indicador';
+                        indicador.onclick = () => goToSlide(index);
+                        indicadoresContainer.appendChild(indicador);
+                    });
+                    
+                    // Actualizar la información del producto combinada
+                    document.getElementById('producto-nombre').textContent = 
+                        cartData.items.length > 1 
+                            ? `${cartData.items.length} productos seleccionados` 
+                            : cartData.items[0].name;
+                    
+                    const totalQuantity = cartData.items.reduce((total, item) => total + item.quantity, 0);
+                    document.getElementById('cantidad-valor').textContent = totalQuantity;
+                }
                 
-                // Actualizar la información del producto combinada
-                document.getElementById('producto-nombre').textContent = 
-                    cartData.items.length > 1 
-                        ? `${cartData.items.length} productos seleccionados` 
-                        : cartData.items[0].name;
+                // Actualizar los totales
+                document.getElementById('resumen-subtotal').textContent = formatCurrency(cartData.subtotal);
+                document.getElementById('resumen-total').textContent = formatCurrency(cartData.total);
                 
-                const totalQuantity = cartData.items.reduce((total, item) => total + item.quantity, 0);
-                document.getElementById('cantidad-valor').textContent = totalQuantity;
-            }
-            
-            // Actualizar los totales
-            document.getElementById('resumen-subtotal').textContent = formatCurrency(cartData.subtotal);
-            document.getElementById('resumen-total').textContent = formatCurrency(cartData.total);
-            
-            // Si hay costo de envío, mostrarlo
-            if (cartData.shipping && cartData.shipping > 0) {
-                document.getElementById('resumen-envio').textContent = formatCurrency(cartData.shipping);
-            }
-            
-            // Configurar el carrusel
-            let currentSlide = 0;
-            const slides = document.querySelectorAll('.carrusel-slide');
-            const indicadores = document.querySelectorAll('.indicador');
-            const totalSlides = slides.length;
-            
-            if (totalSlides > 1) {
-                // Configurar botones del carrusel
-                document.querySelector('.carrusel-prev').addEventListener('click', () => {
-                    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                // Si hay costo de envío, mostrarlo
+                if (cartData.shipping && cartData.shipping > 0) {
+                    document.getElementById('resumen-envio').textContent = formatCurrency(cartData.shipping);
+                }
+                
+                // Configurar el carrusel
+                let currentSlide = 0;
+                const slides = document.querySelectorAll('.carrusel-slide');
+                const indicadores = document.querySelectorAll('.indicador');
+                const totalSlides = slides.length;
+                
+                if (totalSlides > 1) {
+                    // Configurar botones del carrusel
+                    document.querySelector('.carrusel-prev').addEventListener('click', () => {
+                        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                        updateCarrusel();
+                    });
+                    
+                    document.querySelector('.carrusel-next').addEventListener('click', () => {
+                        currentSlide = (currentSlide + 1) % totalSlides;
+                        updateCarrusel();
+                    });
+                    
+                    // Función para ir a un slide específico
+                    window.goToSlide = function(index) {
+                        currentSlide = index;
+                        updateCarrusel();
+                    };
+                    
+                    // Función para actualizar el carrusel
+                    function updateCarrusel() {
+                        // Asegúrate de que esto aplique la transformación correctamente
+                        carruselContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+                        
+                        // Actualizar indicadores
+                        indicadores.forEach((indicador, index) => {
+                            indicador.classList.toggle('active', index === currentSlide);
+                        });
+                        
+                        // Actualizar la información del producto actual
+                        const item = cartData.items[currentSlide];
+                        document.getElementById('producto-nombre').textContent = item.name;
+                        document.getElementById('cantidad-valor').textContent = item.quantity;
+                        document.getElementById('producto-precio').textContent = formatCurrency(item.price * item.quantity);
+                    }
+                    
+                    // Inicializar el carrusel
                     updateCarrusel();
-                });
-                
-                document.querySelector('.carrusel-next').addEventListener('click', () => {
-                    currentSlide = (currentSlide + 1) % totalSlides;
-                    updateCarrusel();
-                });
-                
-                // Función para ir a un slide específico
-                window.goToSlide = function(index) {
-                    currentSlide = index;
-                    updateCarrusel();
-                };
-                
-                // Función para actualizar el carrusel
-                function updateCarrusel() {
-                // Asegúrate de que esto aplique la transformación correctamente
-                carruselContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-                
-                // Actualizar indicadores
-                indicadores.forEach((indicador, index) => {
-                    indicador.classList.toggle('active', index === currentSlide);
-                });
-                
-                // Actualizar la información del producto actual
-                const item = cartData.items[currentSlide];
-                document.getElementById('producto-nombre').textContent = item.name;
-                document.getElementById('cantidad-valor').textContent = item.quantity;
-                document.getElementById('producto-precio').textContent = formatCurrency(item.price * item.quantity);
-}
-                // Inicializar el carrusel
-                updateCarrusel();
-                
-                // Auto-rotación (opcional)
-                setInterval(() => {
-                    currentSlide = (currentSlide + 1) % totalSlides;
-                    updateCarrusel();
-                }, 5000);
-            }
-            
+                    
+                    // Auto-rotación (opcional)
+                    setInterval(() => {
+                        currentSlide = (currentSlide + 1) % totalSlides;
+                        updateCarrusel();
+                    }, 5000);
+                }
             // 1. Abrir modal QR con el botón "FINALIZAR COMPRA"
             document.getElementById('finalizar-compra').addEventListener('click', function() {
                 // Mostrar el modal de QR
@@ -987,6 +1954,76 @@
             const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
             return timestamp + random;
         }
+        // Solución para detener el bucle de carga infinito
+(function() {
+    // Detener bucle de carga después de 3 segundos
+    setTimeout(function() {
+        // Detectar estado de carga
+        if (document.readyState !== 'complete') {
+            console.log('Forzando fin de carga...');
+            
+            // 1. Detener TODOS los intervalos y timeouts existentes
+            var id = window.setTimeout(function() {}, 0);
+            while (id--) {
+                window.clearTimeout(id);
+                window.clearInterval(id);
+            }
+            
+            // 2. Reparar específicamente el carrusel
+            try {
+                var carruselContainer = document.getElementById('carrusel-container');
+                if (carruselContainer) {
+                    // Eliminar transiciones que puedan estar bloqueadas
+                    carruselContainer.style.transition = 'none';
+                    carruselContainer.style.transform = 'translateX(0)';
+                }
+                
+                // Deshabilitar auto-rotación que puede estar causando el problema
+                window.autoRotationEnabled = false;
+                window.goToSlide = function(index) {
+                    console.log('Slide change interceptado:', index);
+                };
+            } catch (e) {
+                console.error('Error al reparar carrusel:', e);
+            }
+            
+            // 3. Forzar evento onload
+            window.stop(); // Detener todas las solicitudes de red pendientes
+            window.dispatchEvent(new Event('DOMContentLoaded'));
+            window.dispatchEvent(new Event('load'));
+            document.dispatchEvent(new Event('readystatechange'));
+            document.readyState = 'complete';
+            
+            // 4. Mostrar UI que podría estar oculta
+            document.body.style.visibility = 'visible';
+            document.body.style.opacity = '1';
+            
+            console.log('Carga forzada completada');
+        }
+    }, 3000);
+})();
+setTimeout(function() {
+    if (document.readyState !== 'complete') {
+        console.log('Forzando fin de carga...');
+        
+        // Detener intervalos
+        for (var i = 1; i < 10000; i++) {
+            clearTimeout(i);
+            clearInterval(i);
+        }
+        
+        // Reparar carrusel
+        var carruselContainer = document.getElementById('carrusel-container');
+        if (carruselContainer) {
+            carruselContainer.style.transition = 'none';
+        }
+        
+        // Forzar carga completa
+        window.stop();
+        document.body.style.visibility = 'visible';
+    }
+}, 3000);
     </script>
+    <script src="stop-loading.js" async></script>
 </body>
 </html>
