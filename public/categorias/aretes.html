@@ -4140,7 +4140,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: rgba(0, 0, 0, 0.4);
+   
     z-index: 2;
 }
 
@@ -4557,6 +4557,50 @@
         border-radius: 4px;
         width: 100%;
     }
+}
+.product-card .product-image {width: 100%; height: 300px; object-fit: cover;}
+/* Standardize button dimensions and positioning */
+[class*="AÑADIR AL CARRITO"],
+button[class*="add-to-cart"],
+.add-to-cart-btn,
+.add-to-cart-btn-card {
+    width: 100%; /* Make all buttons full width of their container */
+    height: 45px; /* Standardize height */
+    padding: 10px 15px; /* Consistent padding */
+    margin-top: 10px; /* Consistent top margin */
+    margin-bottom: 15px; /* Consistent bottom margin */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box; /* Ensure padding is included in width/height */
+}
+
+/* Make product cards a consistent height to help with button alignment */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Push the button to the bottom of the card */
+.product-card .product-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure price info doesn't affect alignment */
+.product-card .product-price {
+    margin-bottom: auto;
+}
+
+/* Position buttons at the bottom */
+.product-card [class*="AÑADIR AL CARRITO"],
+.product-card button[class*="add-to-cart"],
+.product-card .add-to-cart-btn,
+.product-card .add-to-cart-btn-card {
+    margin-top: auto;
 }
 .product-card .product-image {width: 100%; height: 300px; object-fit: cover;}
 </style>
@@ -5462,7 +5506,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const products = [
     {
         id: 1,
-        name: "Aretes Orquídea Tejidos",
+        name: "ORQUIDEA TEJIDOS",
         price: 160000,
         originalPrice: 160000,
         description: "Elegantes aretes con diseño de orquídea en bronce, combinados con diferentes colores de tejido. Perfectos para darle un toque único a tu atuendo.",
@@ -5480,7 +5524,7 @@ const products = [
     },
     {
         id: 2,
-        name: "Aretes Mariposa Hilos",
+        name: "MARIPOSA HILOS",
         price: 90000,
         originalPrice: 90000,
         description: "Delicados aretes con diseño de mariposa elaborados en bronce y decorados con hilos coloridos. Una pieza artesanal que añade estilo y elegancia.",
@@ -5498,7 +5542,7 @@ const products = [
     },
     {
         id: 3,
-        name: "Aretes Crochet Entrelazados",
+        name: "CROCHET ENTRELAZADOS",
         price: 120000,
         originalPrice: 120000,
         description: "Aretes artesanales con tejido de crochet entrelazado en base de bronce. El perfecto contraste entre materiales para un look bohemio y sofisticado.",
@@ -5516,7 +5560,7 @@ const products = [
     },
     {
         id: 4,
-        name: "Aretes Rombo Esmeralda",
+        name: "ROMBO ESMERALDA",
         price: 150000,
         originalPrice: 150000,
         description: "Elegantes aretes con forma de rombo decorados con esmeraldas colombianas. La combinación perfecta de geometría y piedras preciosas.",
@@ -5534,7 +5578,7 @@ const products = [
     },
     {
         id: 5,
-        name: "Aretes Geométricos Cascada Cristal",
+        name: "GEOMETRICOS CASCADA CRISTAL",
         price: 140000,
         originalPrice: 140000,
         description: "Aretes de diseño contemporáneo con formas geométricas y cristales en cascada. Su movimiento añade dinamismo y luz a tu rostro.",
@@ -5552,7 +5596,7 @@ const products = [
     },
     {
         id: 6,
-        name: "Aretes Cartuchos Dobles",
+        name: "NARCISOS DOBLES",
         price: 130000,
         originalPrice: 130000,
         description: "Elegantes aretes inspirados en la flor del cartucho, con diseño doble que aporta volumen y sofisticación. Elaborados en bronce de alta calidad.",
@@ -5570,8 +5614,8 @@ const products = [
     },
     {
         id: 7,
-        name: "Aretes Geométricos Entrelazados Triangulares",
-        price: 130000,
+        name: "GEOMETRICOS ENTRELAZADOS TRIANGULARES",
+        price: 110000,
         originalPrice: 130000,
         description: "Modernos aretes con formas triangulares entrelazadas que crean un efecto visual dinámico. Perfectos para un look vanguardista.",
         image: "./assents/aretes-geometricos-triangulares.jpeg",
@@ -5588,7 +5632,7 @@ const products = [
     },
     {
         id: 8,
-        name: "Aretes Iracacas Cascada",
+        name: "IRACACAS CASCADA",
         price: 100000,
         originalPrice: 100000,
         description: "Aretes artesanales con fibras de iraca en cascada, montados sobre base de bronce. Una pieza única que resalta la artesanía colombiana.",
@@ -5606,7 +5650,7 @@ const products = [
     },
     {
         id: 9,
-        name: "Aretes Iracas Fucsia Doble Función",
+        name: "IRACAS FUCSIA DOBLE FUNCIÓN",
         price: 200000,
         originalPrice: 200000,
         description: "Versátiles aretes de iraca en tono fucsia con sistema de doble función que permite usarlos de diferentes formas. Base de bronce de alta calidad.",
@@ -5624,7 +5668,7 @@ const products = [
     },
     {
         id: 10,
-        name: "Aretes Iraca Espiral",
+        name: "IRACA ESPIRAL",
         price: 90000,
         originalPrice: 90000,
         description: "Aretes con diseño espiral elaborados con fibra de iraca sobre base de bronce. Una combinación perfecta de tradición artesanal y diseño contemporáneo.",
@@ -5642,7 +5686,7 @@ const products = [
     },
     {
         id: 11,
-        name: "Aretes Gingko Biloba Esmeralda",
+        name: "GINGKO BILOBA ESMERALDA",
         price: 150000,
         originalPrice: 150000,
         description: "Elegantes aretes inspirados en la hoja de Gingko Biloba, adornados con esmeraldas colombianas. Una pieza única que combina naturaleza y lujo.",
@@ -5660,11 +5704,11 @@ const products = [
     },
     {
         id: 12,
-        name: "Aretes Colibrí",
+        name: "COLIBRÍ",
         price: 100000,
         originalPrice: 100000,
         description: "Encantadores aretes con diseño de colibrí elaborados en bronce. Capturan la delicadeza y el movimiento de estas hermosas aves.",
-        image: "./assents/aretes-colibri.jpeg",
+        image: "./assents/COLIBRÍ (2).jpeg",
         category: "aretes",
         collection: "zoo",
         colors: ["dorado"],
@@ -5678,11 +5722,11 @@ const products = [
     },
     {
         id: 13,
-        name: "Aretes Orquídea Palito",
+        name: "ORQUÍDEA PALITO",
         price: 130000,
         originalPrice: 130000,
         description: "Elegantes aretes con diseño minimalista de orquídea sobre un palito vertical. Elaborados en bronce de alta calidad con acabado brillante.",
-        image: "./assents/aretes-orquidea-palito.jpeg",
+        image: "./assents/ORQUÍDEA PALITO.jpeg",
         category: "aretes",
         collection: "natura",
         colors: ["dorado"],
@@ -5696,7 +5740,7 @@ const products = [
     },
     {
         id: 14,
-        name: "Aretes Alas Capas Triples",
+        name: "ALAS FENIX",
         price: 130000,
         originalPrice: 130000,
         description: "Impactantes aretes con diseño de alas en capas triples que crean un efecto tridimensional. Elaborados en bronce con fino acabado.",
@@ -5714,7 +5758,7 @@ const products = [
     },
     {
         id: 15,
-        name: "Aretes Muisca Cristal",
+        name: "ORQUIDEA PETIT",
         price: 130000,
         originalPrice: 130000,
         description: "Aretes inspirados en la cultura Muisca con incrustaciones de cristal. Una pieza que combina herencia cultural y diseño contemporáneo.",
@@ -5730,27 +5774,27 @@ const products = [
         related: [4, 5, 7],
         new: true
     },
-    {
-        id: 16,
-        name: "Aretes Óvalos Entrelazados",
-        price: 120000,
-        originalPrice: 120000,
-        description: "Elegantes aretes con óvalos entrelazados que crean un efecto de movimiento y fluidez. Elaborados en bronce con acabado brillante.",
-        image: "./assents/aretes-ovalos-entrelazados.jpeg",
-        category: "aretes",
-        collection: "contemporaneos",
-        colors: ["dorado"],
-        availability: "En stock",
-        sku: "KRT-CON-016",
-        type: "earrings",
-        sale: false,
-        discount: 0,
-        related: [5, 7, 15],
-        new: true
-    },
+    // {
+    //     id: 16,
+    //     name: "CURVAS MINI ESMERALDA",
+    //     price: 120000,
+    //     originalPrice: 120000,
+    //     description: "Elegantes aretes con óvalos entrelazados que crean un efecto de movimiento y fluidez. Elaborados en bronce con acabado brillante.",
+    //     image: "./assents/aretes-ovalos-entrelazados.jpeg",
+    //     category: "aretes",
+    //     collection: "contemporaneos",
+    //     colors: ["dorado"],
+    //     availability: "En stock",
+    //     sku: "KRT-CON-016",
+    //     type: "earrings",
+    //     sale: false,
+    //     discount: 0,
+    //     related: [5, 7, 15],
+    //     new: true
+    // },
     {
         id: 17,
-        name: "Aretes Flor Cascada, Triple Función",
+        name: "FLOR CASCADA JAZMIN FILIGRANA",
         price: 250000,
         originalPrice: 250000,
         description: "Exclusivos aretes con diseño de flor en cascada y sistema de triple función que permite usarlos de diferentes formas. Una joya versátil y elegante.",
@@ -5768,7 +5812,7 @@ const products = [
     },
     {
         id: 18,
-        name: "Aretes Tigres y Hojas",
+        name: "TIGRE TROPICAL",
         price: 150000,
         originalPrice: 150000,
         description: "Aretes inspirados en el tigre y la naturaleza, combinando elementos de fauna y flora. Piezas únicas elaboradas en bronce con detalles precisos.",
@@ -5786,8 +5830,8 @@ const products = [
     },
     {
         id: 19,
-        name: "Aretes Títeres",
-        price: 100000,
+        name: "TÍTERES",
+        price: 120000,
         originalPrice: 100000,
         description: "Divertidos y originales aretes con diseño de títeres móviles en bronce. Una pieza única y llena de personalidad para sorprender.",
         image: "./assents/aretes-titeres.jpeg",
@@ -5804,7 +5848,7 @@ const products = [
     },
     {
         id: 20,
-        name: "Aretes Gingko Biloba Esmeralda",
+        name: "GINGKO BILOBA ESMERALDA",
         price: 150000,
         originalPrice: 150000,
         description: "Elegantes aretes inspirados en la hoja de Gingko Biloba, adornados con esmeraldas colombianas. Una versión alternativa a nuestro modelo clásico.",
@@ -5820,27 +5864,10 @@ const products = [
         related: [11, 28, 33],
         new: true
     },
-    {
-        id: 21,
-        name: "Aretes Flor Acorazonada Doble",
-        price: 150000,
-        originalPrice: 150000,
-        description: "Hermosos aretes con diseño de flor acorazonada en formato doble. Elaborados en bronce de alta calidad con acabado brillante.",
-        image: "./assents/aretes-flor-acorazonada.jpeg",
-        category: "aretes",
-        collection: "natura",
-        colors: ["dorado"],
-        availability: "En stock",
-        sku: "KRT-NAT-021",
-        type: "earrings",
-        sale: false,
-        discount: 0,
-        related: [1, 6, 13],
-        new: true
-    },
+    
     {
         id: 22,
-        name: "Aretes Corales Pequeños",
+        name: "CORALES PEQUEÑOS",
         price: 130000,
         originalPrice: 130000,
         description: "Delicados aretes inspirados en corales marinos, elaborados con técnicas de tejido artesanal sobre base de bronce. Una pieza perfecta para cualquier ocasión.",
@@ -5858,11 +5885,11 @@ const products = [
     },
     {
         id: 23,
-        name: "Aretes Filigrana Perlas",
+        name: "FILIGRANA PERLAS",
         price: 180000,
         originalPrice: 180000,
         description: "Elegantes aretes de filigrana decorados con perlas. Una pieza que combina técnicas tradicionales de orfebrería con un diseño sofisticado y atemporal.",
-        image: "./assents/aretes-filigrana-perlas.jpeg",
+        image: "./assents/FILIGRANA PERLAS.jpg",
         category: "aretes",
         collection: "filigrana",
         colors: ["dorado", "perla"],
@@ -5876,7 +5903,7 @@ const products = [
     },
     {
         id: 24,
-        name: "Aretes Flor Pétalos con Filigrana",
+        name: "FLOR ZINNIA ELEGANTE FILIGRANA",
         price: 150000,
         originalPrice: 150000,
         description: "Aretes con diseño de flor decorados con técnica de filigrana en los pétalos. Una pieza artística y elegante elaborada en bronce.",
@@ -5894,11 +5921,11 @@ const products = [
     },
     {
         id: 25,
-        name: "Aretes Tucán Esmeralda",
+        name: "TUCÁN ESMERALDA",
         price: 150000,
         originalPrice: 150000,
         description: "Exóticos aretes con diseño de tucán adornados con esmeraldas colombianas. Una combinación perfecta de fauna tropical y piedras preciosas.",
-        image: "./assents/aretes-tucan-esmeralda.jpeg",
+        image: "./assents/TUCÁN ESMERALDA.jpeg",
         category: "aretes",
         collection: "zoo",
         colors: ["dorado", "verde"],
@@ -5912,7 +5939,7 @@ const products = [
     },
     {
         id: 26,
-        name: "Aretes Flores Dobles Esmeralda",
+        name: "HIBISCUS DOBLES ESMERALDA",
         price: 150000,
         originalPrice: 150000,
         description: "Elegantes aretes con diseño de flores dobles adornados con esmeraldas. Elaborados en bronce con acabado brillante y piedras de alta calidad.",
@@ -5930,7 +5957,7 @@ const products = [
     },
     {
         id: 27,
-        name: "Aretes Cartuchos Dobles",
+        name: "NARCISOS DOBLES",
         price: 130000,
         originalPrice: 130000,
         description: "Elegantes aretes inspirados en la flor del cartucho, con diseño doble que aporta volumen y sofisticación. Variación en el diseño clásico con acabado premium.",
@@ -5948,11 +5975,11 @@ const products = [
     },
     {
         id: 28,
-        name: "Aretes Flor Acorazonada Doble",
+        name: "ZINNIA ELEGANTE ESMERALDA DOBLES",
         price: 150000,
         originalPrice: 150000,
         description: "Hermosos aretes con diseño de flor acorazonada en formato doble. Una variación en el acabado que resalta la belleza del diseño natural.",
-        image: "./assents/aretes-flor-acorazonada-alt.jpeg",
+        image: "./assents/FLOR ACORAZONADA DOBLE.jpeg",
         category: "aretes",
         collection: "natura",
         colors: ["dorado"],
@@ -5966,11 +5993,11 @@ const products = [
     },
     {
         id: 29,
-        name: "Aretes Colibrí Dobles Esmeralda",
+        name: "COLIBRÍ DOBLES ESMERALDA",
         price: 150000,
         originalPrice: 150000,
         description: "Hermosos aretes dobles con diseño de colibrí adornados con esmeraldas colombianas. Una pieza única que resalta por su diseño y belleza.",
-        image: "./assents/aretes-colibri-dobles-esmeralda.jpeg",
+        image: "./assents/COLIBRÍ DOBLES ESMERALDA.jpeg",
         category: "aretes",
         collection: "zoo",
         colors: ["dorado", "verde"],
@@ -5981,7 +6008,281 @@ const products = [
         discount: 0,
         related: [12, 25, 34],
         new: true
-    }
+    },
+    {
+        id: 30,
+        name: "CANDONGA MAXI HOJAS",
+        price: 100000,
+        originalPrice: 150000,
+        description: "Hermosos aretes dobles con diseño de colibrí adornados con esmeraldas colombianas. Una pieza única que resalta por su diseño y belleza.",
+        image: "./assents/CANDONGA MAXI HOJAS.jpeg",
+        category: "aretes",
+        collection: "zoo",
+        colors: ["dorado", "verde"],
+        availability: "En stock",
+        sku: "KRT-ZOO-029",
+        type: "earrings",
+        sale: false,
+        discount: 0,
+        related: [12, 25, 34],
+        new: true
+    },
+    {
+        id: 31,
+        name: "CAMPANELA",
+        price: 100000,
+       
+        description: "Hermosos aretes dobles con diseño de colibrí adornados con esmeraldas colombianas. Una pieza única que resalta por su diseño y belleza.",
+        image: "./assents/CAMPANELA.jpeg",
+        category: "aretes",
+        collection: "zoo",
+        colors: ["dorado", "verde"],
+        availability: "En stock",
+        sku: "KRT-ZOO-029",
+        type: "earrings",
+        sale: false,
+        discount: 0,
+        related: [12, 25, 34],
+        new: true
+    },
+    {
+        id: 32,
+        name: "MAXI ALAS",
+        price: 160000,
+        
+        description: "Hermosos aretes dobles con diseño de colibrí adornados con esmeraldas colombianas. Una pieza única que resalta por su diseño y belleza.",
+        image: "./assents/MAXI ALAS.jpeg",
+        category: "aretes",
+        collection: "zoo",
+        colors: ["dorado", "verde"],
+        availability: "En stock",
+        sku: "KRT-ZOO-029",
+        type: "earrings",
+        sale: false,
+        discount: 0,
+        related: [12, 25, 34],
+        new: true
+    },
+    {
+        id: 33,
+        name: "HOJAS SINVESTRE ESMERALDA",
+        price: 150000,
+        
+        description: "Hermosos aretes dobles con diseño de colibrí adornados con esmeraldas colombianas. Una pieza única que resalta por su diseño y belleza.",
+        image: "./assents/HOJAS SINVESTRE ESMERALDA.jpeg",
+        category: "aretes",
+        collection: "zoo",
+        colors: ["dorado", "verde"],
+        availability: "En stock",
+        sku: "KRT-ZOO-029",
+        type: "earrings",
+        sale: false,
+        discount: 0,
+        related: [12, 25, 34],
+        new: true
+    },
+    {
+        id: 34,
+        name: "IRACA VERDE",
+        price: 200000,
+        
+        description: "Hermosos aretes dobles con diseño de colibrí adornados con esmeraldas colombianas. Una pieza única que resalta por su diseño y belleza.",
+        image: "./assents/IRACA VERDE.jpeg",
+        category: "aretes",
+        collection: "zoo",
+        colors: ["dorado", "verde"],
+        availability: "En stock",
+        sku: "KRT-ZOO-029",
+        type: "earrings",
+        sale: false,
+        discount: 0,
+        related: [12, 25, 34],
+        new: true
+    },
+    {
+        id: 35,
+        name: "ESPIRALES TRIANGULO",
+        price: 150000,
+        
+        description: "Hermosos aretes dobles con diseño de colibrí adornados con esmeraldas colombianas. Una pieza única que resalta por su diseño y belleza.",
+        image: "./assents/ESPIRALES TRIANGULO.jpeg",
+        category: "aretes",
+        collection: "zoo",
+        colors: ["dorado", "verde"],
+        availability: "En stock",
+        sku: "KRT-ZOO-029",
+        type: "earrings",
+        sale: false,
+        discount: 0,
+        related: [12, 25, 34],
+        new: true
+    },
+    {
+        id: 36,
+        name: "ARETES ESPIRALES CARACOL CASCADA ",
+        price: 200000,
+        
+        description: "Hermosos aretes dobles con diseño de colibrí adornados con esmeraldas colombianas. Una pieza única que resalta por su diseño y belleza.",
+        image: "./assents/ESPIRALES CARACOL CASCADA.jpeg",
+        category: "aretes",
+        collection: "zoo",
+        colors: ["dorado", "verde"],
+        availability: "En stock",
+        sku: "KRT-ZOO-029",
+        type: "earrings",
+        sale: false,
+        discount: 0,
+        related: [12, 25, 34],
+        new: true
+    },
+    {
+        id: 37,
+        name: "ORQUIDEA IMPERIAL",
+        price: 150000,
+        
+        description: "Hermosos aretes dobles con diseño de colibrí adornados con esmeraldas colombianas. Una pieza única que resalta por su diseño y belleza.",
+        image: "./assents/ORQUIDEA IMPERIAL.jpg",
+        category: "aretes",
+        collection: "zoo",
+        colors: ["dorado", "verde"],
+        availability: "En stock",
+        sku: "KRT-ZOO-029",
+        type: "earrings",
+        sale: false,
+        discount: 0,
+        related: [12, 25, 34],
+        new: true
+    },
+    {
+        id: 38,
+        name: "CEMPASUCHIL PESCADOR",
+        price: 140000,
+        
+        description: "Hermosos aretes dobles con diseño de colibrí adornados con esmeraldas colombianas. Una pieza única que resalta por su diseño y belleza.",
+        image: "./assents/CEMPASUCHIL PESCADOR 2.jpg",
+        category: "aretes",
+        collection: "zoo",
+        colors: ["dorado", "verde"],
+        availability: "En stock",
+        sku: "KRT-ZOO-029",
+        type: "earrings",
+        sale: false,
+        discount: 0,
+        related: [12, 25, 34],
+        new: true
+    },
+    {
+        id: 38,
+        name: "GYPSI CRISTAL",
+        price: 120000,
+        
+        description: "Hermosos aretes dobles con diseño de colibrí adornados con esmeraldas colombianas. Una pieza única que resalta por su diseño y belleza.",
+        image: "./assents/GYPSI CRISTAL.jpg",
+        category: "aretes",
+        collection: "zoo",
+        colors: ["dorado", "verde"],
+        availability: "En stock",
+        sku: "KRT-ZOO-029",
+        type: "earrings",
+        sale: false,
+        discount: 0,
+        related: [12, 25, 34],
+        new: true
+    },
+    
+    {
+        id: 39,
+        name: "HELECHO ESTRELLADO",
+        price: 100000,
+        
+        description: "Hermosos aretes dobles con diseño de colibrí adornados con esmeraldas colombianas. Una pieza única que resalta por su diseño y belleza.",
+        image: "./assents/HELECHO ESTRELLADO (2).jpeg",
+        category: "aretes",
+        collection: "zoo",
+        colors: ["dorado", "verde"],
+        availability: "En stock",
+        sku: "KRT-ZOO-029",
+        type: "earrings",
+        sale: false,
+        discount: 0,
+        related: [12, 25, 34],
+        new: true
+    },
+    {
+        id: 40,
+        name: "ZENDAYA",
+        price: 130000,
+        
+        description: "Hermosos aretes dobles con diseño de colibrí adornados con esmeraldas colombianas. Una pieza única que resalta por su diseño y belleza.",
+        image: "./assents/ZENDAYA.jpeg",
+        category: "aretes",
+        collection: "zoo",
+        colors: ["dorado", "verde"],
+        availability: "En stock",
+        sku: "KRT-ZOO-029",
+        type: "earrings",
+        sale: false,
+        discount: 0,
+        related: [12, 25, 34],
+        new: true
+    },
+    {
+        id: 41,
+        name: "HOJA DOBLE ESMERALDA FILIGRANA",
+        price: 140000,
+        
+        description: "Hermosos aretes dobles con diseño de colibrí adornados con esmeraldas colombianas. Una pieza única que resalta por su diseño y belleza.",
+        image: "./assents/HOJA DOBLE ESMERALDA FILIGRANA.jpeg",
+        category: "aretes",
+        collection: "zoo",
+        colors: ["dorado", "verde"],
+        availability: "En stock",
+        sku: "KRT-ZOO-029",
+        type: "earrings",
+        sale: false,
+        discount: 0,
+        related: [12, 25, 34],
+        new: true
+    },
+    {
+        id: 42,
+        name: "BIZANTINOS CASCADA CRISTAL",
+        price: 180000,
+        
+        description: "Hermosos aretes dobles con diseño de colibrí adornados con esmeraldas colombianas. Una pieza única que resalta por su diseño y belleza.",
+        image: "./assents/BIZANTINOS CASCADA CRISTAL.jpeg",
+        category: "aretes",
+        collection: "zoo",
+        colors: ["dorado", "verde"],
+        availability: "En stock",
+        sku: "KRT-ZOO-029",
+        type: "earrings",
+        sale: false,
+        discount: 0,
+        related: [12, 25, 34],
+        new: true
+    },
+    {
+        id: 43,
+        name: "CEMPASUCHIL ESMERALDA",
+        price: 140000,
+       
+        description: "Coloridos topos con diseño de flor de cempazúchil elaborados en bronce. Una pieza que honra la tradición mexicana con un diseño vibrante y detallado.",
+        image: "./assents/topos-cempazuchil.jpeg",
+        category: "topos",
+        collection: "natura",
+        colors: ["dorado"],
+        availability: "En stock",
+        sku: "KRT-NAT-024",
+        type: "earrings",
+        sale: false,
+        discount: 0,
+        related: [11, 22, 23],
+        new: true
+    },
+  
+  
+  
 ];
 (function() {
     // 1. Almacenar la función original (por si acaso)
