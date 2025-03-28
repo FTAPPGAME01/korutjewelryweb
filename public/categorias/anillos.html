@@ -7,7 +7,6 @@
     <style>
         /* Base responsive settings */
 
-
 /* Navbar responsiveness */
 @media (max-width: 768px) {
     .navbar {
@@ -3756,49 +3755,6 @@
     text-align: center;
     margin-bottom: 40px;
 }
-.product-image {
-    width: 100%;        /* Ocupa todo el ancho del contenedor */
-    height: 300px;       /* Altura fija para todas las imágenes */
-    object-fit: cover;   /* Garantiza que la imagen cubra el área sin distorsión */
-    object-position: center; /* Centra la imagen */
-    transition: transform 0.3s ease; /* Mantiene la animación existente */
-}
-
-/* Mantener proporción en vista de modal */
-.modal-main-image {
-    width: 100%;
-    height: 400px;
-    object-fit: contain; /* 'contain' preserva la proporción y muestra la imagen completa */
-    background-color: #f8f8f8; /* Fondo neutro para las áreas no cubiertas */
-}
-
-/* Para productos relacionados en el modal */
-.related-product-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    object-position: center;
-}
-.product-card {
-    position: relative;
-}
-
-.product-image {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    background-color: #f0f0f0; /* Color de fondo mientras carga */
-}
-
-/* Opcional: efecto de carga con degradado */
-.product-image.loading {
-    animation: imagePlaceholder 1.5s infinite alternate;
-}
-
-@keyframes imagePlaceholder {
-    from { background-color: #f0f0f0; }
-    to { background-color: #e0e0e0; }
-}
 
 .tracking-form {
     display: flex;
@@ -3989,6 +3945,287 @@
     padding-bottom: 15px;
     border-bottom: 1px solid #ddd;
     margin-bottom: 15px;
+}
+
+.order-number {
+    font-weight: bold;
+}
+
+.order-date {
+    color: #666;
+}
+
+.order-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.status-processing {
+    background-color: #FFF9C4;
+    color: #F57F17;
+}
+
+.status-shipped {
+    background-color: #E1F5FE;
+    color: #0288D1;
+}
+
+.status-delivered {
+    background-color: #E8F5E9;
+    color: #388E3C;
+}
+
+.order-summary {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.order-items-count {
+    color: #666;
+}
+
+.order-track-btn {
+    padding: 8px 15px;
+    background-color: #FFD700;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.order-track-btn:hover {
+    background-color: #FFCC00;
+}
+
+.no-orders {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-style: italic;
+}
+
+/* Mejoras visuales para productos */
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 25px;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.badge.new {
+    background-color: #4CAF50;
+    color: white;
+}
+/* Estilos para el botón de compra directa */
+.direct-buy-btn {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    background: linear-gradient(45deg, #FFD700, #FFC107);
+    border: none;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 1px;
+    font-size: 16px;
+}
+
+.direct-buy-btn:hover {
+    background: linear-gradient(45deg, #FFC107, #FFD700);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.direct-buy-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto de brillo */
+.direct-buy-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+    transform: rotate(30deg);
+    transition: transform 0.5s ease;
+    opacity: 0;
+}
+
+.direct-buy-btn:hover::after {
+    transform: rotate(30deg) translate(50%, 50%);
+    opacity: 1;
+}
+
+/* Separador para distinguirlo del botón de añadir al carrito */
+.direct-buy-btn::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Ícono de reloj para transmitir la idea de rapidez */
+.direct-buy-btn .icon {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .direct-buy-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+.hero {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    margin-top: 80px;
+}
+
+.horizontal-gallery {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-image {
+    flex: 1;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    transition: flex 0.5s ease;
+}
+
+.hero-image:hover {
+    flex: 1.5; /* Expandir ligeramente al pasar el mouse */
+}
+
+.hero-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+   
+    z-index: 2;
+}
+
+.hero-title {
+    color: white;
+    font-size: 58px;
+    margin-bottom: 20px;
+}
+
+.shop-now {
+    display: inline-flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-size: 30px;
+    gap: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .horizontal-gallery {
+        flex-direction: column; /* Cambiar a vertical en móviles */
+    }
+    
+    .hero-image {
+        height: 33.33%; /* Cada imagen ocupa un tercio de la altura en móviles */
+    }
+    
+    .hero-title {
+        font-size: 36px;
+    }
+    
+    .shop-now {
+        font-size: 20px;
+    }
+}
+.whatsapp-btn {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    animation: pulse 1.5s infinite;
+}
+
+.whatsapp-btn:hover {
+    background-color: #20ba5a;
+}
+
+.whatsapp-icon {
+    margin-top: 13px;
+    font-size: 30px;
+}
+
+/* Efecto de pulsación */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Para dispositivos móviles */
+@media screen and (max-width: 767px) {
+    .whatsapp-btn {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 25px;
+    }
 }
 .faq-section {
     background-color: #f9f9f9;
@@ -4319,286 +4556,49 @@
         width: 100%;
     }
 }
-
-.order-number {
-    font-weight: bold;
-}
-
-.order-date {
-    color: #666;
-}
-
-.order-status {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.status-processing {
-    background-color: #FFF9C4;
-    color: #F57F17;
-}
-
-.status-shipped {
-    background-color: #E1F5FE;
-    color: #0288D1;
-}
-
-.status-delivered {
-    background-color: #E8F5E9;
-    color: #388E3C;
-}
-
-.order-summary {
+.product-card .product-image {width: 100%; height: 300px; object-fit: cover;}
+/* Standardize button dimensions and positioning */
+[class*="AÑADIR AL CARRITO"],
+button[class*="add-to-cart"],
+.add-to-cart-btn,
+.add-to-cart-btn-card {
+    width: 100%; /* Make all buttons full width of their container */
+    height: 45px; /* Standardize height */
+    padding: 10px 15px; /* Consistent padding */
+    margin-top: 10px; /* Consistent top margin */
+    margin-bottom: 15px; /* Consistent bottom margin */
     display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
-}
-
-.order-items-count {
-    color: #666;
-}
-
-.order-track-btn {
-    padding: 8px 15px;
-    background-color: #FFD700;
-    color: #333;
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.order-track-btn:hover {
-    background-color: #FFCC00;
-}
-
-.no-orders {
-    text-align: center;
-    padding: 40px;
-    color: #999;
-    font-style: italic;
-}
-
-/* Mejoras visuales para productos */
-.product-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 25px;
-}
-
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-.badge.new {
-    background-color: #4CAF50;
-    color: white;
-}
-/* Estilos para el botón de compra directa */
-.direct-buy-btn {
-    width: 100%;
-    padding: 15px;
-    margin-top: 15px;
-    background: linear-gradient(45deg, #FFD700, #FFC107);
-    border: none;
-    color: #000;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 4px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    letter-spacing: 1px;
-    font-size: 16px;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box; /* Ensure padding is included in width/height */
 }
 
-.direct-buy-btn:hover {
-    background: linear-gradient(45deg, #FFC107, #FFD700);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.direct-buy-btn:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Efecto de brillo */
-.direct-buy-btn::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
-    transform: rotate(30deg);
-    transition: transform 0.5s ease;
-    opacity: 0;
-}
-
-.direct-buy-btn:hover::after {
-    transform: rotate(30deg) translate(50%, 50%);
-    opacity: 1;
-}
-
-/* Separador para distinguirlo del botón de añadir al carrito */
-.direct-buy-btn::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: rgba(0, 0, 0, 0.1);
-}
-
-/* Ícono de reloj para transmitir la idea de rapidez */
-.direct-buy-btn .icon {
-    margin-right: 8px;
-    font-size: 18px;
-}
-
-/* Estilos responsivos */
-@media (max-width: 768px) {
-    .direct-buy-btn {
-        padding: 12px;
-        font-size: 14px;
-    }
-}
-.hero {
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-    margin-top: 80px;
-}
-
-.horizontal-gallery {
-    display: flex;
-    width: 100%;
-    height: 100%;
-}
-
-.hero-image {
-    flex: 1;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    transition: flex 0.5s ease;
-}
-
-.hero-image:hover {
-    flex: 1.5; /* Expandir ligeramente al pasar el mouse */
-}
-
-.hero-content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+/* Make product cards a consistent height to help with button alignment */
+.product-card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 2;
+    height: 100%;
 }
 
-.hero-title {
-    color: white;
-    font-size: 38px;
-    margin-bottom: 20px;
-}
-
-.shop-now {
-    display: inline-flex;
-    align-items: center;
-    color: white;
-    text-decoration: none;
-    font-size: 30px;
-    gap: 15px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .horizontal-gallery {
-        flex-direction: column; /* Cambiar a vertical en móviles */
-    }
-    
-    .hero-image {
-        height: 33.33%; /* Cada imagen ocupa un tercio de la altura en móviles */
-    }
-    
-    .hero-title {
-        font-size: 36px;
-    }
-    
-    .shop-now {
-        font-size: 20px;
-    }
-}
-.whatsapp-btn {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 40px;
-    right: 40px;
-    background-color: #25d366;
-    color: #FFF;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 2px 2px 3px #999;
-    z-index: 100;
+/* Push the button to the bottom of the card */
+.product-card .product-info {
+    flex-grow: 1;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    animation: pulse 1.5s infinite;
+    flex-direction: column;
 }
 
-.whatsapp-btn:hover {
-    background-color: #20ba5a;
+/* Ensure price info doesn't affect alignment */
+.product-card .product-price {
+    margin-bottom: auto;
 }
 
-.whatsapp-icon {
-    margin-top: 13px;
-    font-size: 30px;
-}
-
-/* Efecto de pulsación */
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Para dispositivos móviles */
-@media screen and (max-width: 767px) {
-    .whatsapp-btn {
-        width: 50px;
-        height: 50px;
-        bottom: 20px;
-        right: 20px;
-        font-size: 25px;
-    }
+/* Position buttons at the bottom */
+.product-card [class*="AÑADIR AL CARRITO"],
+.product-card button[class*="add-to-cart"],
+.product-card .add-to-cart-btn,
+.product-card .add-to-cart-btn-card {
+    margin-top: auto;
 }
 </style>
 <!DOCTYPE html>
@@ -6008,7 +6008,7 @@ document.addEventListener('DOMContentLoaded', function() {
     {
         id: 2,
         name: "Anillo Cayena Esmeralda",
-        price: 95000,
+        price: 140000,
         description: "Delicado Anillo con diseño de Flor Cayena. Chapado en oro de 18k, hipoalergénico y libre de níquel. El eslabón y cierre son reforzados para mayor durabilidad.",
         image: "./assents/anillo Cayena.jpeg",
         category: "collares",
@@ -6024,11 +6024,11 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
         id: 3,
-        name: "Anillo Murano",
-        price: 180000,
+        name: "MURANO PASION",
+        price: 100000,
         originalPrice: 210000,
         description: "Exclusivo juego de collar y aretes con diseño de hojas. Material premium bañado en oro, resistente al agua y de larga duración. Un complemento perfecto para cualquier ocasión.",
-        image: "./assents/anillo rojo.jpeg",
+        image: "./assents/MURANO PASION.jpeg",
         category: "juegos",
         collection: "naturaleza",
         colors: ["dorado", "plateado"],
@@ -6043,8 +6043,8 @@ document.addEventListener('DOMContentLoaded', function() {
    
     {
         id: 4,
-        name: "Anillo Rosa Oro",
-        price: 85000,
+        name: "Anillo Rosa ",
+        price: 120000,
         originalPrice: 85000,
         description: "Delicado anillo con diseño de rosa en oro rosa. Ajustable para diferentes tallas, elaborado con materiales hipoalergénicos. Una pieza única que complementa cualquier estilo.",
         image: "./assents/rosa oro1.jpeg",
@@ -6066,11 +6066,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Nuevos productos
     {
         id: 5,
-        name: "Anillo Libertad Alas Capas Dobles",
+        name: "ALAS DOBLE",
         price: 130000,
         originalPrice: 150000,
         description: "Hermoso anillo Libertad con diseño de alas de capas dobles. Fabricado en bronce con acabado dorado. Diseño único inspirado en la colección Contemporáneos.",
-        image: "./assents/libertad capas doble.jpeg",
+        image: "./assents/LIBERTAD ALAS DOBLE.jpeg",
         category: "anillos",
         collection: "contemporaneos",
         colors: ["dorado", "plateado"],
@@ -6084,7 +6084,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
         id: 6,
-        name: "Anillo Aro Doble Esmeralda",
+        name: "EDEN ESMERALDA",
         price: 130000,
         originalPrice: 130000,
         description: "Elegante anillo de aro doble con piedra esmeralda. Fabricado en bronce con acabado dorado. Diseño contemporáneo que combina con cualquier atuendo.",
@@ -6120,8 +6120,8 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
         id: 8,
-        name: "Anillo Solitario",
-        price: 130000,
+        name: "MURANO JARDIN",
+        price: 100000,
         originalPrice: 130000,
         description: "Clásico anillo solitario en bronce. Diseño minimalista inspirado en los temas marinos. Ideal para ocasiones especiales o uso diario.",
         image: "./assents/solitario.jpeg",
@@ -6174,11 +6174,29 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
         id: 11,
-        name: "Anillo Orquídea Esmeralda",
-        price: 180000,
-        originalPrice: 200000,
+        name: "HOJA ROMANO FILIGRANA",
+        price: 160000,
+        
         description: "Espectacular anillo con forma de orquídea y piedra esmeralda. Fabricado en bronce con acabado dorado. Una pieza excepcional inspirada en la naturaleza.",
-        image: "./assents/anillo orquidea.jpeg",
+        image: "./assents/HOJA ROMANO FILIGRANA.jpeg",
+        category: "anillos",
+        collection: "naturaleza",
+        colors: ["dorado", "plateado"],
+        availability: "En stock",
+        sku: "KRT-NAT-015",
+        type: "ring",
+        sale: true,
+        discount: 10,
+        related: [7, 10, 14],
+        new: true
+    },
+    {
+        id: 12,
+        name: "CORAZON ALADO ESMERALDA",
+        price: 150000,
+        
+        description: "Espectacular anillo con forma de orquídea y piedra esmeralda. Fabricado en bronce con acabado dorado. Una pieza excepcional inspirada en la naturaleza.",
+        image: "./assents/CORAZON ALADO ESMERALDA (2).jpeg",
         category: "anillos",
         collection: "naturaleza",
         colors: ["dorado", "plateado"],
