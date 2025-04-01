@@ -1368,7 +1368,19 @@
         height: 35px;
     }
 }
-        </style>
+  /* Estilo opcional para la imagen (ajusta el tamaño) */
+  .imagen-clickeable {
+            width: 350px;       /* Ancho personalizable */
+            height: auto;       /* Altura automática */
+            cursor: pointer;    /* Cambia el cursor a "mano" al pasar el mouse */
+            border-radius: 8px; /* Bordes redondeados (opcional) */
+            transition: transform 0.3s; /* Efecto de zoom al pasar el mouse */
+        }
+        
+        .imagen-clickeable:hover {
+            transform: scale(1.05); /* Efecto hover (opcional) */
+        }
+</style>
     </head>
     
     <body>
@@ -1466,16 +1478,15 @@
                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMwAAADACAMAAAB/Pny7AAAAflBMVEXsHCb////qAADsGCP+9PT97u7rAA372Nn++vrsFSDsJSTzg4bsER3zgYT61NXrABHuT1X96On0k5X84+P73d7rChf4v8H3s7X6zM32p6nvWVvxcnT5x8j1n6HsIyztMjntOUD0jZDuRErwa2z1mZzwY2btKzPyeHvuUVDuRETu4+WpAAALV0lEQVR4nO1b63rqoBIVyI2KuWjIzZirifr+L3hmiFq12a3anOo5H+vP3i2ILGZYMwN0NtPQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0Ph/g6QDPPbqmfwWwMRfRmEYJpvOotarp/MLMEqbOHDIAMfMO0rFqyf1HDj16gBIBGlXWEW2tZFQWlA5uBvz6CX4i2f7HbgUfQyTD7cz2C2ccZz6zgYr5RkXMHPGFyY5w0nLt2XDZeEDlSDKLv0KvK5Cr3PbXgoxJ8bqDJNExXvqA/OKDqiEaUW9myZJZ1vXIcm6FKEx/3SyJiSHt9xNHm9jh9hpSeVIq6BFnTskWjhu8Tl9mhP/DckImsUmsTfNP3WL077OiUNC/0yWieQdLUNnaUhWW98bs8oJnFa1S8DNTr+Qfmi+nQJIunAJ2fjiOyoIQZtlnJ170YXxbgLA6CEySO7P5B3zkqL87EVTUr+XYSSFGGm0/B4qMww0n//3YtL9ZMy/BJgFPCwWz6STokrM/RuRkbyGyOI/l5XIbGU3byNmXO4TYqTiyazYWpvR24iZnO0ISbqnk0Vr7qTsPcgw2qRgloL+3PUfsOawFG9RuwmvdUm4+E2hIv2chPUbVAFytoSUN3veLAjvkDpO7N2mpX8Nq4odY9v/dhqw6yDcNr9bkt+C+jYJ1+L3sgp6CM66eyUbunZIXt0Z8n+A9xETY/u6jUM3hKSTHVFwOocUQr4mExBQURk7OqGi0sxEQ0834N2QHwkJJt6ytHFJ0vw9G9FHJPhFoByHdchJUv51msZESlbl9CeUyCb664NP3idB9t8IclYTkvrPFXrd8X/vfcae1gXaOsafZ53fHVkAk2+Y/gAakeU9pmGn64Vv7hegy6f7sHHl5RR/L/4VYoQfrdyPZ9l4Pln9TAY4+ItNCtguOo+OXjAI6m/T7BSHBa/ZyIR5kS5nzKo21fhWlX5IjHEydzBklBg/kqHr0Lk4qjai9usFg/yIsDEciDK6Gh0XS+QNLQPiFKO2kZCxmWNkYDmnIWNtyBfEjXe11WQTHFsaZGO1BiGLLwOzAnrF3gIa56Pf+i8yXmyYP7JhkNUkP/RiDG8YzGBlu4m9CkxjsFJaXuxjeVidDZdZeNAA87W/DCwz/CB9mAyTaPPvp8mlyBzyo+jLnZvX2UkBqnVqq/sR9/NcURR4H2SEtoFXRA0MSEP4+cvIIDfE3F2QGS5chOdJfkuGS/itOHKxkAwXqoEJaBFHwtyDXhK79vutAwv1AxdwGuAgj1/HBPy0znHWq/1xsoyC7Yi5BTujsyW9mGEeS+KboXmPreUFmbIqueR+12a9dUVGWGXWtV3jCXTOCj64EtAZv2sG3bvjOS4v23XbQc9dHZskuIPLQMj/dCtGiyXO2j7KL63RLrUlGJYpxNlIxjyw3sq/jig0xUb6SUakeUyz1DXNMFbl1ZnMfhmFphEkS0iFrXUEFjXiKK970c9jOzBMN1VjW7vAMQLwfRjYjrs7E3G6sKOLNE546ipuCFFWhmNtlCIoiwStNaNbvKK7WinuAYmwkWcyDJxx1aBDomFxsBMZVD0jDNG6PadnAYpKCCXEWaG42pVQyxhGUZJH8XaeyXszM5Ba53LPcmsDAyqFYV6C3nPUWuVxeSW4RNNdJeXKgOB6n5ahLglCku7aXeQQp7POZOQ6r9ssW9vE2VLhLxawQrv5vCs4D5frLGuhf0TRMkZ8KBvwP2rdX7ZSgzhXqYIoYN0cMAHYAF2rOe4foXRtLgef2l5+hIJrYo55RYaQ+sPyrCJWenUiw/pKwMame1wlzi2KrR5uILHHBquHbwen8rogqaQQj6VAX8iACRwMgBBh7LPDIeROaYNUu929ONWmNd4Y09kNmUQlDdIKcGnOe0YljJBDJSQE0byUZuUAAr8dGkTjmvuHi5gRMjg3MLXyq4vAy0tMBZaCeZsrkrhBiIPb9ppMO/RAQ6bgUWdpRgmtuhw2oHcdZwQ0lD6QAclg1jNXGiNk0LtS6nXoVv5FRLFajKoHwUuY8+ocjGh6NMwNGWvwECvDVvEpzcBDIVhbl2QgsYuOuRUOATqzebhoGCEDX+bUVKBhrpIIPsNfpZ6SJJIeM0SJqjVkZNdkjnIqShzmREY0ICqGGbrBDRkucSuaKzsYhoC1DB6+BvhCRjZgEaeiLQac65MEa42yXQmBl0hOO0Q3RXqQ6lEysrkgI6qEGFEH/pTekEGndheQd86NQd1lTtaP+tktGSFw/4e0SFFur8WEoTShBssdxgMMT0zFJXNwqWsyfFhXusOPnMiAFKcCesv4moznOyTkIBl06RyHmBvuo7XyDRkPD70JyaiKl9mNntAdNgrO8REMiSwB+QNK3m6IauMCEGEgG8igoyIHdWWpyHhkKLsoRDc1DdyxaggOaWH34DnGJRmQkyw21OKzLf5T3DgtZ7h5QbY9XwVxSX1X/TsbIeOq0ojuTWIUfJBmXuQqi4DQbA5k6IlMOnySY8o6BHFQ1TvKyy9ktqe8eRGHKrkoZAU7xvjqs3R+dCpL2ShX/cPT5eNN0IwLGDNz1Y46kpmlx2+LBjXDrzehIvQwHrjYAF52JMM899FDGYqzc5MIEiE3NI8FjRA7lTB9URPOlVdBHJDbU41qnjlfk7GJHaU5LIoLefkxaIoW+kf1xiUrKBmsoXYI8gT+C8Mly23uBM6JAqRr5uGhsysa3ZSadgs1vkAvq0c8Fn1bVQBKShHG/Jw7oRJ9kunDYxIJhQNUbyFxPhhjGHAxjnWDd4tCrclWWu3QkLTmucKARNR96A6Ay+CSSpRJLI9EBws6dnUt+lPZzFR6iet7VjzpQ2PnHcnQj0WyCmNf1Uu8mm/wxQWTXbQKI5+Wm62K8LJI7TBvQd/6OFzlay6Xm925nDK/lE7fg9GmTqMkyeNN29PjGyrwhzgblRLahie9oDJ2t1dny7R1j5sXyXBMXE6PsphFh8CjCluBR1PHrzp1EsN5F7s41+Li8m3QXTifnFkXprBGn4aphvPo/MtDylPjRdD8FbyWuH9+aP6JIcxORYYXd55l/lcgqh45TEVmJjuSv8w0NFdpGrUnIiOq3Ni96CE3ZJXqUM3axtE0l7RyCbo9xUCPgy4x2cGUtJjoGZ+1duL+NffNEILb4UyaTzQBma2SF73Vgo3vT+sUwnftxw8DJgFs/InvuUXjhi963wwl93ji8DQgqRvNq/4AUJY8mH78BK81XvUk0Fqr88gJ4c3JRkwjjI+CW8SUU64jFujzV/31E3WdSf1MZqY7sT7eD68jbj/dfmUsJek0qcQz3w6F+2Y608jOCbPXvdUWGTHXU7ERInC2r/x7QbEk4USxhtOQ5OKVL2jxoC/cT2EbD/KJ1QSPPX8DAWyM59+an8DwiUTw8j/iFDImZFPI38yDCz53SPhyLnjOsoRFbSv+JB8uZdm6xIinfO35PGgWGcSuu0panhQcIKRnWdKSX1MTDn28y260zOY5cdz1e3DBzbuITGJGm3mbNWXflwe/29XbOdCjFGcuuFATpzD13XZ56lZhtyggRrKc/LXnL0DlOk0MQswQD7LzxFZ/nr3K481yBzOvyqrxu3W9SSP1sgq65djPhW6Omy7KN9guF2CW16zrNA8D03HMIEziZR27eGNiBKHrJq4brky8nA+hIY1sfIlkqG47/5+P8F4IYXlF5WdZ12XZ/lB4VtF06/kmzu0gMJFflNa7bt970G3vQ7cOuvXeA88Y/hYM9rSCwK3P4Acxg61xODSHw6HsC3zJwC+6jSjEW4MxUC0EqNf/1sw1NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0RvEfwNa68fgA2U8AAAAASUVORK5CYII=" alt="Daviplata" class="metodo-icon" onerror="this.src='https://via.placeholder.com/40?text=Daviplata'">
                         </div>
                         
-                        <p style="text-align: center; margin-bottom: 10px;"><b>Paga con Bold:</b></p>
                         
-                        <!-- Botón de pagos Bold -->
-                        <script
-                        data-bold-button
-                        data-api-key="s2HXCW7cnFaL4tRp27ReRQ"
-                        data-description="Pago a traves de Embedded Checkout"
-                        data-redirection-url="https://micomercio.com/pagos/resultado"
-                        data-render-mode="embedded"
-                        ></script>
+                          <!-- Imagen que redirige al hacer clic -->
+                        <a href="https://checkout.bold.co/payment/LNK_A8XV4KHT6O" target="_blank">
+                            <img 
+                                src="./assents/bold boton.jpg" 
+                                alt="Descripción de la imagen" 
+                                class="imagen-clickeable"
+                            >
+                        </a>
                         <p style="text-align: center; margin-bottom: 10px;"><b>acepta:</b></p>
                         <div class="metodos-pago">
                             <img src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="Visa" class="metodo-icon">
