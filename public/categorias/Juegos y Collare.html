@@ -6520,7 +6520,7 @@ const products = [
         availability: "En stock",
         sku: "KRT-ZOO-001",
         type: "set", // para la prueba virtual
-        sale: true,
+        
         discount: 10,
         related: [2, 4, 5],
         new: true
@@ -7362,12 +7362,8 @@ function createProductCard(product) {
     
     // Crear los badges si hay oferta o descuento
     let badgesHTML = '';
-    if (product.sale) {
-        badgesHTML += `<span class="badge sale">Sale</span>`;
-    }
-    if (product.discount > 0) {
-        badgesHTML += `<span class="badge discount">-${product.discount}%</span>`;
-    }
+    
+   
     if (product.new) {
         badgesHTML += `<span class="badge new">Nuevo</span>`;
     }
